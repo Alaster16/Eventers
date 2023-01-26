@@ -1,4 +1,5 @@
 ﻿using Eventers.Server.Models;
+using Eventers.Shared.Domain;
 using IdentityServer4.EntityFramework.Options;
 using Microsoft.AspNetCore.ApiAuthorization.IdentityServer;
 using Microsoft.EntityFrameworkCore;
@@ -17,5 +18,10 @@ namespace Eventers.Server.Data
             IOptions<OperationalStoreOptions> operationalStoreOptions) : base(options, operationalStoreOptions)
         {
         }
+        public DbSet<Event> Events { get; set; }
+        public DbSet<Payment> Payments { get; set; }
+        public DbSet<Staff> Staffs { get; set; }
+        public DbSet<User> Users { get; set; }
+        public DbSet<Company> Companies { get; set; }
     }
 }
