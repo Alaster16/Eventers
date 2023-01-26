@@ -4,14 +4,16 @@ using Eventers.Server.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Eventers.Server.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230126213644_AddedDefaultDataAndUser")]
+    partial class AddedDefaultDataAndUser
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -127,34 +129,6 @@ namespace Eventers.Server.Data.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Companies");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            CompanyAdress = "Changi Prison",
-                            CompanyEmail = "Superayam@gmail.com",
-                            CompanyID = 867375,
-                            CompanyName = "Superman123",
-                            CompanyNumber = 93572345,
-                            CreatedBy = "System",
-                            DateCreated = new DateTime(2023, 1, 27, 5, 49, 6, 233, DateTimeKind.Local).AddTicks(4331),
-                            DateUpdated = new DateTime(2023, 1, 27, 5, 49, 6, 233, DateTimeKind.Local).AddTicks(4342),
-                            UpdatedBy = "System"
-                        },
-                        new
-                        {
-                            Id = 2,
-                            CompanyAdress = "Dairy Farm",
-                            CompanyEmail = "Superpork@gmail.com",
-                            CompanyID = 565866,
-                            CompanyName = "Batman123",
-                            CompanyNumber = 93657364,
-                            CreatedBy = "System",
-                            DateCreated = new DateTime(2023, 1, 27, 5, 49, 6, 233, DateTimeKind.Local).AddTicks(6094),
-                            DateUpdated = new DateTime(2023, 1, 27, 5, 49, 6, 233, DateTimeKind.Local).AddTicks(6105),
-                            UpdatedBy = "System"
-                        });
                 });
 
             modelBuilder.Entity("Eventers.Shared.Domain.Event", b =>
@@ -249,40 +223,6 @@ namespace Eventers.Server.Data.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Eventees");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            Address = "Jurong East",
-                            ContactNumber = 86118499,
-                            CreatedBy = "System",
-                            DateCreated = new DateTime(2023, 1, 27, 5, 49, 6, 230, DateTimeKind.Local).AddTicks(7645),
-                            DateOfBirth = 2002,
-                            DateUpdated = new DateTime(2023, 1, 27, 5, 49, 6, 232, DateTimeKind.Local).AddTicks(598),
-                            Email = "njx2002@gmail.com",
-                            EventeeID = 112233,
-                            Gender = "Male",
-                            NRIC = 53,
-                            Name = "Alaster",
-                            UpdatedBy = "System"
-                        },
-                        new
-                        {
-                            Id = 2,
-                            Address = "Jurong West",
-                            ContactNumber = 96731728,
-                            CreatedBy = "System",
-                            DateCreated = new DateTime(2023, 1, 27, 5, 49, 6, 232, DateTimeKind.Local).AddTicks(2625),
-                            DateOfBirth = 1865,
-                            DateUpdated = new DateTime(2023, 1, 27, 5, 49, 6, 232, DateTimeKind.Local).AddTicks(2635),
-                            Email = "jeffng@gmail.com",
-                            EventeeID = 334455,
-                            Gender = "Female",
-                            NRIC = 193,
-                            Name = "Jeff",
-                            UpdatedBy = "System"
-                        });
                 });
 
             modelBuilder.Entity("Eventers.Shared.Domain.Payment", b =>
@@ -365,32 +305,6 @@ namespace Eventers.Server.Data.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Staffs");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            CreatedBy = "System",
-                            DateCreated = new DateTime(2023, 1, 27, 5, 49, 6, 233, DateTimeKind.Local).AddTicks(9067),
-                            DateUpdated = new DateTime(2023, 1, 27, 5, 49, 6, 233, DateTimeKind.Local).AddTicks(9073),
-                            StaffEmail = "Gingerbreast@gmail.com",
-                            StaffID = 357683,
-                            StaffName = "Gingerbread",
-                            StaffNumber = 86843757,
-                            UpdatedBy = "System"
-                        },
-                        new
-                        {
-                            Id = 2,
-                            CreatedBy = "System",
-                            DateCreated = new DateTime(2023, 1, 27, 5, 49, 6, 233, DateTimeKind.Local).AddTicks(9848),
-                            DateUpdated = new DateTime(2023, 1, 27, 5, 49, 6, 233, DateTimeKind.Local).AddTicks(9852),
-                            StaffEmail = "Gingerball@gmail.com",
-                            StaffID = 657485,
-                            StaffName = "Gingerballs",
-                            StaffNumber = 93768486,
-                            UpdatedBy = "System"
-                        });
                 });
 
             modelBuilder.Entity("IdentityServer4.EntityFramework.Entities.DeviceFlowCodes", b =>

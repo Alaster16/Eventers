@@ -1,4 +1,5 @@
-﻿using Eventers.Server.Models;
+﻿using Eventers.Server.Configurations.Entities;
+using Eventers.Server.Models;
 using Eventers.Shared.Domain;
 using IdentityServer4.EntityFramework.Options;
 using Microsoft.AspNetCore.ApiAuthorization.IdentityServer;
@@ -23,6 +24,14 @@ namespace Eventers.Server.Data
         public DbSet<Eventee> Eventees { get; set; }
         public DbSet<Payment> Payments { get; set; }
         public DbSet<Staff> Staffs { get; set; }
+        protected override void OnModelCreating(ModelBuilder builder)
+        {
+            base.OnModelCreating(builder);
+            builder.ApplyConfiguration(new EventeeSeedConfiguration());
+            builder.ApplyConfiguration(new CompanySeedConfiguration());
+            builder.ApplyConfiguration(new StaffSeedConfiguration());
 
+        }
     }
+
 }
