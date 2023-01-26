@@ -1,4 +1,4 @@
-﻿uusing System;
+﻿using System;
 using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Eventers.Server.Data.Migrations
