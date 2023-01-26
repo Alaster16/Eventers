@@ -14,5 +14,7 @@ namespace Eventers.Shared.Domain
         public DateTime Date { get; set; }
         public int CompanyID { get; set; }
         public virtual Company Company { get; set; }
-}
+        public int StaffID { get; set; }
+        public virtual Staff Staff { get; set; }
+    }
 }

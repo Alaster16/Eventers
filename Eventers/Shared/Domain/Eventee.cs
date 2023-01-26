@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace Eventers.Shared.Domain
 {
-    public class User : BaseDomainModel
+    public class Eventee : BaseDomainModel
     {
-        public int UserID { get; set; }
+        public int EventeeID { get; set; }
         public string Name { get; set; }
         public string Address { get; set; }
         public int NRIC { get; set; }
