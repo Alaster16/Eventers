@@ -21,7 +21,7 @@ namespace Eventers.Server.Data
         public DbSet<Event> Events { get; set; }
         public DbSet<Payment> Payments { get; set; }
         public DbSet<Staff> Staffs { get; set; }
-        public DbSet<User> Users { get; set; }
+        public DbSet<Eventee> Eventees { get; set; }
         public DbSet<Company> Companies { get; set; }
     }
 }
