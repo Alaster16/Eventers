@@ -18,11 +18,13 @@ namespace Eventers.Server.Controllers
         //Refractored
         //private readonly ApplicationDbContext _context;
         private readonly IUnitOfWork _unitOfWork;
+        private IUnitOfWork unitOfWork;
+
         public PaymentsController(ApplicationDbContext context)
         {
             //Refractored
             //_context = context;
-            _unitOfWork = _unitOfWork;
+            _unitOfWork = unitOfWork;
         }
 
         // GET: api/Payments
