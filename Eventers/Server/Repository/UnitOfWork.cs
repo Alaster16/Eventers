@@ -33,7 +33,7 @@ namespace Eventers.Server.Repository
         public IGenericRepository<Event> Events
             => _events ??= new GenericRepository<Event>(_context);
         public IGenericRepository<Eventee> Eventees
-            => _eventee ??= new GenericRepository<Eventee>(_context);
+            => _eventees ??= new GenericRepository<Eventee>(_context);
         public IGenericRepository<Staff> Staffs
             => _staffs ??= new GenericRepository<Staff>(_context);
         public IGenericRepository<Company> Companies
