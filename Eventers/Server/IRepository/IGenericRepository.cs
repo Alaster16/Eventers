@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore.Query;
+﻿using Eventers.Shared.Domain;
+using Microsoft.EntityFrameworkCore.Query;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,5 +22,6 @@ namespace Eventers.Server.IRepository
         Task Delete(int id);
         void DeleteRange(IEnumerable<T> entities);
         void Update(T entity);
+        Task Insert(Staff staff);
     }
 }

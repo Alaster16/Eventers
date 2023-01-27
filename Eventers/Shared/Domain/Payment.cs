@@ -14,7 +14,7 @@ namespace Eventers.Shared.Domain
         public int CVC { get; set; }
         public int EventeeID { get; set; }
         public virtual Eventee Eventee { get; set; }
-        public int EventerID { get; set; }
-        public virtual Eventer Eventer { get; set; }
+        public int EventID { get; set; }
+        public virtual Eventer Eventers { get; set; }
     }
 }
