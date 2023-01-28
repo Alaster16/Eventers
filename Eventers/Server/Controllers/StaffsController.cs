@@ -18,14 +18,12 @@ namespace Eventers.Server.Controllers
         //Refractored
         //private readonly ApplicationDbContext _context;
         private readonly IUnitOfWork _unitOfWork;
-        private IUnitOfWork unitOfWork;
-
-        public StaffsController(ApplicationDbContext context)
+        public StaffsController(IUnitOfWork unitOfWork)
         {
-            //Refractored
-            //_context = context;
             _unitOfWork = unitOfWork;
         }
+
+
 
         // GET: api/Staffs
         [HttpGet]

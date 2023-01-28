@@ -1,0 +1,86 @@
+﻿@page "/Payments/"
+@inject HttpClient _client
+@inject IJSRuntime js
+@attribute [Authorize]
+
+
+<h3 class="card-title">Company Name</h3>
+@if (Payments == null)
+{
+    <div class="alert alert-info">Loading Payments...</div>
+}
+else
+{
+    <table class="table table-responsive">
+        <thead>
+            <tr>
+                <th>Payment ID</th>
+                <th>Payment Method</th>
+                <th>Card Number</th>
+                <th>CVC</th>
+                <th>Eventee Name</th>
+                <th>Eventee ID</th>
+
+
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var payment in Payments)
+            {
+            <tr>
+                <td>@payment.PaymentID</td>
+                <td>@payment.PaymentMethod</td>
+                <td>@payment.CardNumber</td>
+                <td>@payment.CVC</td>
+                <td>@payment.Eventee</td>
+                <td>@payment.EventeeID</td>
+               
+
+
+
+                <td>
+                    <a href="/eventees/view/@payment.Id" class="btn btn-primary">
+                        <span class="oi oi-book"></span>
+                    </a>
+                    <a href="/eventees/edit/@payment.Id" class="btn btn-warning">
+                        <span class="oi oi-pencil"></span>
+                    </a>
+                    <button class="btn btn-danger" @onclick="@(()=>Delete(payment.Id))">
+                        <span class="oi oi-delete"></span>
+                    </button>
+                </td>
+            </tr>
+            }
+        </tbody>
+    </table>
+}
+<br />
+
+
+@code {
+    private List<Payment> Payments;
+
+    protected async override Task OnInitializedAsync()
+    {
+        Payments = await _client.GetFromJsonAsync<List<Payment>>($"{Endpoints.PaymentsEndpoint}");
+
+    }
+
+    async Task Delete(int paymentId)
+    {
+        var payment = Payments.First(q => q.Id == paymentId);
+        var confirm = await js.InvokeAsync<bool>("confirm", $"Do you want to delete {payment.PaymentID}?");
+        if (confirm)
+        {
+            await _client.DeleteAsync($"{Endpoints.PaymentsEndpoint}/{paymentId}");
+            await OnInitializedAsync();
+        }
+
+
+    }
+
+
+
+}
+

@@ -18,14 +18,11 @@ namespace Eventers.Server.Controllers
         //Refractored
         //private readonly ApplicationDbContext _context;
         private readonly IUnitOfWork _unitOfWork;
-        private IUnitOfWork unitOfWork;
-
-        public EventersController(ApplicationDbContext context)
+        public EventersController(IUnitOfWork unitOfWork)
         {
-            //Refractored
-            //_context = context;
             _unitOfWork = unitOfWork;
         }
+
 
         // GET: api/Eventers
         [HttpGet]

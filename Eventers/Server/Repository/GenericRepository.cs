@@ -1,5 +1,6 @@
 ﻿using Eventers.Server.Data;
 using Eventers.Server.IRepository;
+using Eventers.Shared.Domain;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Query;
 using System;
@@ -71,6 +72,11 @@ namespace Eventers.Server.Repository
         public async Task Insert(T entity)
         {
             await _db.AddAsync(entity);
+        }
+
+        public Task Insert(Staff staff)
+        {
+            throw new NotImplementedException();
         }
 
         public async Task InsertRange(IEnumerable<T> entities)
