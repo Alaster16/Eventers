@@ -21,10 +21,10 @@ namespace Eventers.Server.Configurations.Entities
                  CreatedBy = "System",
                  UpdatedBy = "System",
                  CompanyID = 867375,
-                 CompanyName = "Superman123",
-                 CompanyEmail = "Superayam@gmail.com",
-                 CompanyAdress = "Changi Prison",
-                 CompanyNumber = 93572345,
+                 CompanyName = "Razer",
+                 CompanyEmail = "Razer@gmail.com",
+                 CompanyAdress = "1 One-north Cres, Singapore 138538",
+                 CompanyNumber = 65052188
              },
              new Company
              {
@@ -34,10 +34,10 @@ namespace Eventers.Server.Configurations.Entities
                  CreatedBy = "System",
                  UpdatedBy = "System",
                  CompanyID = 565866,
-                 CompanyName = "Batman123",
-                 CompanyEmail = "Superpork@gmail.com",
-                 CompanyAdress = "Dairy Farm",
-                 CompanyNumber = 93657364,
+                 CompanyName = "Xtreme Solution Pte Ltd",
+                 CompanyEmail = "Xtreme@gmail.com",
+                 CompanyAdress = "Sim Lim Square, #02-21 Rochor Canal Rd, 188504",
+                 CompanyNumber = 63389566
              }
              );
         }

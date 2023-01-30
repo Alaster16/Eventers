@@ -20,7 +20,7 @@ namespace Eventers.Server.Configurations.Entities
                    DateUpdated = DateTime.Now,
                    CreatedBy = "System",
                    UpdatedBy = "System",
-                   Name = "Alaster",
+                   Name = "Benson",
                    EventeeID = 112233,
                    Address = "Jurong East",
                    NRIC = 053,

@@ -21,8 +21,8 @@ namespace Eventers.Server.Configurations.Entities
                  CreatedBy = "System",
                  UpdatedBy = "System",
                  StaffID = 357683,
-                 StaffName = "Gingerbread",
-                 StaffEmail = "Gingerbreast@gmail.com",
+                 StaffName = "Alaster",
+                 StaffEmail = "Alaster@gmail.com",
                  StaffNumber = 86843757,
              },
              new Staff
@@ -33,8 +33,8 @@ namespace Eventers.Server.Configurations.Entities
                  CreatedBy = "System",
                  UpdatedBy = "System",
                  StaffID = 657485,
-                 StaffName = "Gingerballs",
-                 StaffEmail = "Gingerball@gmail.com",
+                 StaffName = "Ansel Soh",
+                 StaffEmail = "AnselSoh@gmail.com",
                  StaffNumber = 93768486,
              }
              );

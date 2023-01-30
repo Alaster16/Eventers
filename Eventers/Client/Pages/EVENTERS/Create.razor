@@ -1,0 +1,94 @@
+﻿@page "/Eventers/create"
+@inject HttpClient _client
+@inject NavigationManager _navManager
+
+<h3 class="card-title">Create New Event</h3>
+<hr />
+<br />
+<EditForm Model="@EVENTER" OnValidSubmit="CreateEvent">
+    <DataAnnotationsValidator />
+    <ValidationSummary />
+
+
+    <div class="form-group">
+        <label>Company: </label>
+        <div>
+            <InputSelect @bind-Value="EVENTER.CompanyID" class="form-control">
+                <option value="">-- Select Company --</option>
+                @if (Companies != null)
+                {
+                    foreach (var company in Companies)
+                    {
+                        <option value="@company.CompanyID">@company.CompanyName</option>
+                    }
+                }
+            </InputSelect>
+            <ValidationMessage For="@(() => EVENTER.CompanyID)" />
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label>Staff: </label>
+        <div>
+            <InputSelect @bind-Value="EVENTER.StaffID" class="form-control">
+                <option value="">-- Select Staff --</option>
+                @if (Companies != null)
+                {
+                    foreach (var staff in Staffs)
+                    {
+                        <option value="@staff.StaffID">@staff.StaffName</option>
+                    }
+                }
+            </InputSelect>
+            <ValidationMessage For="@(() => EVENTER.StaffID)" />
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label>Event Title: </label>
+        <div>
+            <InputText @bind-Value="EVENTER.Title" class="form-control" />
+            <ValidationMessage For="@(() => EVENTER.Title)" />
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label>Event Location: </label>
+        <div>
+            <InputText @bind-Value="EVENTER.Location" class="form-control" />
+            <ValidationMessage For="@(() => EVENTER.Location)" />
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label>Event Date: </label>
+        <div>
+            <InputDate @bind-Value="EVENTER.Date" class="form-control" />
+            <ValidationMessage For="@(() => EVENTER.Date)" />
+        </div>
+    </div>
+
+    <button type="submit" class="btn btn-success btn-block">
+        Create Event
+    </button>
+
+</EditForm>
+
+@code {
+    EVENTER EVENTER = new EVENTER();
+
+    private IList<Company> Companies;
+    private IList<Staff> Staffs;
+
+    protected async override Task OnInitializedAsync()
+    {
+        Companies = await _client.GetFromJsonAsync<List<Company>>($"{Endpoints.CompaniesEndpoint}");
+        Staffs = await _client.GetFromJsonAsync<List<Staff>>($"{Endpoints.StaffsEndpoint}");
+    }
+
+    private async Task CreateEvent()
+    {
+        await _client.PostAsJsonAsync(Endpoints.EventersEndpoint, EVENTER);
+        _navManager.NavigateTo("/Eventers/");
+    }
+}
