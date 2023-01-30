@@ -16,7 +16,7 @@ namespace Eventers.Server.Repository
     public class UnitOfWork : IUnitOfWork
     {
         private readonly ApplicationDbContext _context;
-        private IGenericRepository<Eventer> _eventers;
+        private IGenericRepository<EVENTER> _eventers;
         private IGenericRepository<Eventee> _eventees;
         private IGenericRepository<Staff> _staffs;
         private IGenericRepository<Company> _companies;
@@ -30,8 +30,8 @@ namespace Eventers.Server.Repository
             _userManager = userManager;
         }
 
-        public IGenericRepository<Eventer> Events
-            => _eventers ??= new GenericRepository<Eventer>(_context);
+        public IGenericRepository<EVENTER> Events
+            => _eventers ??= new GenericRepository<EVENTER>(_context);
         public IGenericRepository<Eventee> Eventees
             => _eventees ??= new GenericRepository<Eventee>(_context);
         public IGenericRepository<Staff> Staffs
@@ -41,7 +41,7 @@ namespace Eventers.Server.Repository
         public IGenericRepository<Payment> Payments
             => _payments ??= new GenericRepository<Payment>(_context);
 
-        public IGenericRepository<Eventer> Eventers => throw new NotImplementedException();
+        public IGenericRepository<EVENTER> EVENTERS => throw new NotImplementedException();
 
         public void Dispose()
         {

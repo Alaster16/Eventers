@@ -4,16 +4,14 @@ using Eventers.Server.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
-using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
-namespace Eventers.Server.Data.Migrations
+namespace Eventers.Server.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20230126185408_AddedNameToUsers")]
-    partial class AddedNameToUsers
+    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
     {
-        protected override void BuildTargetModel(ModelBuilder modelBuilder)
+        protected override void BuildModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -90,6 +88,315 @@ namespace Eventers.Server.Data.Migrations
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
 
                     b.ToTable("AspNetUsers");
+                });
+
+            modelBuilder.Entity("Eventers.Shared.Domain.Company", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("CompanyAdress")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("CompanyEmail")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("CompanyID")
+                        .HasColumnType("int");
+
+                    b.Property<string>("CompanyName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("CompanyNumber")
+                        .HasColumnType("int");
+
+                    b.Property<string>("CreatedBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("DateCreated")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("DateUpdated")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("UpdatedBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Companies");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            CompanyAdress = "Changi Prison",
+                            CompanyEmail = "Superayam@gmail.com",
+                            CompanyID = 867375,
+                            CompanyName = "Superman123",
+                            CompanyNumber = 93572345,
+                            CreatedBy = "System",
+                            DateCreated = new DateTime(2023, 1, 30, 14, 47, 29, 702, DateTimeKind.Local).AddTicks(3149),
+                            DateUpdated = new DateTime(2023, 1, 30, 14, 47, 29, 702, DateTimeKind.Local).AddTicks(3154),
+                            UpdatedBy = "System"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            CompanyAdress = "Dairy Farm",
+                            CompanyEmail = "Superpork@gmail.com",
+                            CompanyID = 565866,
+                            CompanyName = "Batman123",
+                            CompanyNumber = 93657364,
+                            CreatedBy = "System",
+                            DateCreated = new DateTime(2023, 1, 30, 14, 47, 29, 702, DateTimeKind.Local).AddTicks(4101),
+                            DateUpdated = new DateTime(2023, 1, 30, 14, 47, 29, 702, DateTimeKind.Local).AddTicks(4106),
+                            UpdatedBy = "System"
+                        });
+                });
+
+            modelBuilder.Entity("Eventers.Shared.Domain.EVENTER", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("CompanyID")
+                        .HasColumnType("int");
+
+                    b.Property<string>("CreatedBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("Date")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("DateCreated")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("DateUpdated")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("EventerID")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Location")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("StaffID")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Title")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("UpdatedBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CompanyID");
+
+                    b.HasIndex("StaffID");
+
+                    b.ToTable("EVENTERS");
+                });
+
+            modelBuilder.Entity("Eventers.Shared.Domain.Eventee", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Address")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("ContactNumber")
+                        .HasColumnType("int");
+
+                    b.Property<string>("CreatedBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("DateCreated")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("DateOfBirth")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("DateUpdated")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Email")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("EventeeID")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Gender")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("NRIC")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("UpdatedBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Eventees");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Address = "Jurong East",
+                            ContactNumber = 86118499,
+                            CreatedBy = "System",
+                            DateCreated = new DateTime(2023, 1, 30, 14, 47, 29, 700, DateTimeKind.Local).AddTicks(3135),
+                            DateOfBirth = 2002,
+                            DateUpdated = new DateTime(2023, 1, 30, 14, 47, 29, 701, DateTimeKind.Local).AddTicks(1604),
+                            Email = "njx2002@gmail.com",
+                            EventeeID = 112233,
+                            Gender = "Male",
+                            NRIC = 53,
+                            Name = "Alaster",
+                            UpdatedBy = "System"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Address = "Jurong West",
+                            ContactNumber = 96731728,
+                            CreatedBy = "System",
+                            DateCreated = new DateTime(2023, 1, 30, 14, 47, 29, 701, DateTimeKind.Local).AddTicks(3638),
+                            DateOfBirth = 1865,
+                            DateUpdated = new DateTime(2023, 1, 30, 14, 47, 29, 701, DateTimeKind.Local).AddTicks(3643),
+                            Email = "jeffng@gmail.com",
+                            EventeeID = 334455,
+                            Gender = "Female",
+                            NRIC = 193,
+                            Name = "Jeff",
+                            UpdatedBy = "System"
+                        });
+                });
+
+            modelBuilder.Entity("Eventers.Shared.Domain.Payment", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("CVC")
+                        .HasColumnType("int");
+
+                    b.Property<int>("CardNumber")
+                        .HasColumnType("int");
+
+                    b.Property<string>("CreatedBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("DateCreated")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("DateUpdated")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int?>("EVENTERId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("EventID")
+                        .HasColumnType("int");
+
+                    b.Property<int>("EventeeID")
+                        .HasColumnType("int");
+
+                    b.Property<int>("PaymentAmount")
+                        .HasColumnType("int");
+
+                    b.Property<int>("PaymentID")
+                        .HasColumnType("int");
+
+                    b.Property<string>("PaymentMethod")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("UpdatedBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("EVENTERId");
+
+                    b.HasIndex("EventeeID");
+
+                    b.ToTable("Payments");
+                });
+
+            modelBuilder.Entity("Eventers.Shared.Domain.Staff", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("CreatedBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("DateCreated")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("DateUpdated")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("StaffEmail")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("StaffID")
+                        .HasColumnType("int");
+
+                    b.Property<string>("StaffName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("StaffNumber")
+                        .HasColumnType("int");
+
+                    b.Property<string>("UpdatedBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Staffs");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            CreatedBy = "System",
+                            DateCreated = new DateTime(2023, 1, 30, 14, 47, 29, 702, DateTimeKind.Local).AddTicks(6451),
+                            DateUpdated = new DateTime(2023, 1, 30, 14, 47, 29, 702, DateTimeKind.Local).AddTicks(6456),
+                            StaffEmail = "Gingerbreast@gmail.com",
+                            StaffID = 357683,
+                            StaffName = "Gingerbread",
+                            StaffNumber = 86843757,
+                            UpdatedBy = "System"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            CreatedBy = "System",
+                            DateCreated = new DateTime(2023, 1, 30, 14, 47, 29, 702, DateTimeKind.Local).AddTicks(7249),
+                            DateUpdated = new DateTime(2023, 1, 30, 14, 47, 29, 702, DateTimeKind.Local).AddTicks(7253),
+                            StaffEmail = "Gingerball@gmail.com",
+                            StaffID = 657485,
+                            StaffName = "Gingerballs",
+                            StaffNumber = 93768486,
+                            UpdatedBy = "System"
+                        });
                 });
 
             modelBuilder.Entity("IdentityServer4.EntityFramework.Entities.DeviceFlowCodes", b =>
@@ -328,6 +635,42 @@ namespace Eventers.Server.Data.Migrations
                     b.HasKey("UserId", "LoginProvider", "Name");
 
                     b.ToTable("AspNetUserTokens");
+                });
+
+            modelBuilder.Entity("Eventers.Shared.Domain.EVENTER", b =>
+                {
+                    b.HasOne("Eventers.Shared.Domain.Company", "Company")
+                        .WithMany()
+                        .HasForeignKey("CompanyID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Eventers.Shared.Domain.Staff", "Staff")
+                        .WithMany()
+                        .HasForeignKey("StaffID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Company");
+
+                    b.Navigation("Staff");
+                });
+
+            modelBuilder.Entity("Eventers.Shared.Domain.Payment", b =>
+                {
+                    b.HasOne("Eventers.Shared.Domain.EVENTER", "EVENTER")
+                        .WithMany()
+                        .HasForeignKey("EVENTERId");
+
+                    b.HasOne("Eventers.Shared.Domain.Eventee", "Eventee")
+                        .WithMany()
+                        .HasForeignKey("EventeeID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Eventee");
+
+                    b.Navigation("EVENTER");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

@@ -4,14 +4,16 @@ using Eventers.Server.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
-namespace Eventers.Server.Data.Migrations
+namespace Eventers.Server.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230130064730_AddedNameToUser")]
+    partial class AddedNameToUser
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -138,8 +140,8 @@ namespace Eventers.Server.Data.Migrations
                             CompanyName = "Superman123",
                             CompanyNumber = 93572345,
                             CreatedBy = "System",
-                            DateCreated = new DateTime(2023, 1, 27, 5, 49, 6, 233, DateTimeKind.Local).AddTicks(4331),
-                            DateUpdated = new DateTime(2023, 1, 27, 5, 49, 6, 233, DateTimeKind.Local).AddTicks(4342),
+                            DateCreated = new DateTime(2023, 1, 30, 14, 47, 29, 702, DateTimeKind.Local).AddTicks(3149),
+                            DateUpdated = new DateTime(2023, 1, 30, 14, 47, 29, 702, DateTimeKind.Local).AddTicks(3154),
                             UpdatedBy = "System"
                         },
                         new
@@ -151,13 +153,13 @@ namespace Eventers.Server.Data.Migrations
                             CompanyName = "Batman123",
                             CompanyNumber = 93657364,
                             CreatedBy = "System",
-                            DateCreated = new DateTime(2023, 1, 27, 5, 49, 6, 233, DateTimeKind.Local).AddTicks(6094),
-                            DateUpdated = new DateTime(2023, 1, 27, 5, 49, 6, 233, DateTimeKind.Local).AddTicks(6105),
+                            DateCreated = new DateTime(2023, 1, 30, 14, 47, 29, 702, DateTimeKind.Local).AddTicks(4101),
+                            DateUpdated = new DateTime(2023, 1, 30, 14, 47, 29, 702, DateTimeKind.Local).AddTicks(4106),
                             UpdatedBy = "System"
                         });
                 });
 
-            modelBuilder.Entity("Eventers.Shared.Domain.Event", b =>
+            modelBuilder.Entity("Eventers.Shared.Domain.EVENTER", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -179,7 +181,7 @@ namespace Eventers.Server.Data.Migrations
                     b.Property<DateTime>("DateUpdated")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("EventID")
+                    b.Property<int>("EventerID")
                         .HasColumnType("int");
 
                     b.Property<string>("Location")
@@ -200,7 +202,7 @@ namespace Eventers.Server.Data.Migrations
 
                     b.HasIndex("StaffID");
 
-                    b.ToTable("Events");
+                    b.ToTable("EVENTERS");
                 });
 
             modelBuilder.Entity("Eventers.Shared.Domain.Eventee", b =>
@@ -257,9 +259,9 @@ namespace Eventers.Server.Data.Migrations
                             Address = "Jurong East",
                             ContactNumber = 86118499,
                             CreatedBy = "System",
-                            DateCreated = new DateTime(2023, 1, 27, 5, 49, 6, 230, DateTimeKind.Local).AddTicks(7645),
+                            DateCreated = new DateTime(2023, 1, 30, 14, 47, 29, 700, DateTimeKind.Local).AddTicks(3135),
                             DateOfBirth = 2002,
-                            DateUpdated = new DateTime(2023, 1, 27, 5, 49, 6, 232, DateTimeKind.Local).AddTicks(598),
+                            DateUpdated = new DateTime(2023, 1, 30, 14, 47, 29, 701, DateTimeKind.Local).AddTicks(1604),
                             Email = "njx2002@gmail.com",
                             EventeeID = 112233,
                             Gender = "Male",
@@ -273,9 +275,9 @@ namespace Eventers.Server.Data.Migrations
                             Address = "Jurong West",
                             ContactNumber = 96731728,
                             CreatedBy = "System",
-                            DateCreated = new DateTime(2023, 1, 27, 5, 49, 6, 232, DateTimeKind.Local).AddTicks(2625),
+                            DateCreated = new DateTime(2023, 1, 30, 14, 47, 29, 701, DateTimeKind.Local).AddTicks(3638),
                             DateOfBirth = 1865,
-                            DateUpdated = new DateTime(2023, 1, 27, 5, 49, 6, 232, DateTimeKind.Local).AddTicks(2635),
+                            DateUpdated = new DateTime(2023, 1, 30, 14, 47, 29, 701, DateTimeKind.Local).AddTicks(3643),
                             Email = "jeffng@gmail.com",
                             EventeeID = 334455,
                             Gender = "Female",
@@ -307,10 +309,16 @@ namespace Eventers.Server.Data.Migrations
                     b.Property<DateTime>("DateUpdated")
                         .HasColumnType("datetime2");
 
+                    b.Property<int?>("EVENTERId")
+                        .HasColumnType("int");
+
                     b.Property<int>("EventID")
                         .HasColumnType("int");
 
                     b.Property<int>("EventeeID")
+                        .HasColumnType("int");
+
+                    b.Property<int>("PaymentAmount")
                         .HasColumnType("int");
 
                     b.Property<int>("PaymentID")
@@ -324,7 +332,7 @@ namespace Eventers.Server.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("EventID");
+                    b.HasIndex("EVENTERId");
 
                     b.HasIndex("EventeeID");
 
@@ -371,8 +379,8 @@ namespace Eventers.Server.Data.Migrations
                         {
                             Id = 1,
                             CreatedBy = "System",
-                            DateCreated = new DateTime(2023, 1, 27, 5, 49, 6, 233, DateTimeKind.Local).AddTicks(9067),
-                            DateUpdated = new DateTime(2023, 1, 27, 5, 49, 6, 233, DateTimeKind.Local).AddTicks(9073),
+                            DateCreated = new DateTime(2023, 1, 30, 14, 47, 29, 702, DateTimeKind.Local).AddTicks(6451),
+                            DateUpdated = new DateTime(2023, 1, 30, 14, 47, 29, 702, DateTimeKind.Local).AddTicks(6456),
                             StaffEmail = "Gingerbreast@gmail.com",
                             StaffID = 357683,
                             StaffName = "Gingerbread",
@@ -383,8 +391,8 @@ namespace Eventers.Server.Data.Migrations
                         {
                             Id = 2,
                             CreatedBy = "System",
-                            DateCreated = new DateTime(2023, 1, 27, 5, 49, 6, 233, DateTimeKind.Local).AddTicks(9848),
-                            DateUpdated = new DateTime(2023, 1, 27, 5, 49, 6, 233, DateTimeKind.Local).AddTicks(9852),
+                            DateCreated = new DateTime(2023, 1, 30, 14, 47, 29, 702, DateTimeKind.Local).AddTicks(7249),
+                            DateUpdated = new DateTime(2023, 1, 30, 14, 47, 29, 702, DateTimeKind.Local).AddTicks(7253),
                             StaffEmail = "Gingerball@gmail.com",
                             StaffID = 657485,
                             StaffName = "Gingerballs",
@@ -631,7 +639,7 @@ namespace Eventers.Server.Data.Migrations
                     b.ToTable("AspNetUserTokens");
                 });
 
-            modelBuilder.Entity("Eventers.Shared.Domain.Event", b =>
+            modelBuilder.Entity("Eventers.Shared.Domain.EVENTER", b =>
                 {
                     b.HasOne("Eventers.Shared.Domain.Company", "Company")
                         .WithMany()
@@ -652,11 +660,9 @@ namespace Eventers.Server.Data.Migrations
 
             modelBuilder.Entity("Eventers.Shared.Domain.Payment", b =>
                 {
-                    b.HasOne("Eventers.Shared.Domain.Event", "Event")
+                    b.HasOne("Eventers.Shared.Domain.EVENTER", "EVENTER")
                         .WithMany()
-                        .HasForeignKey("EventID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("EVENTERId");
 
                     b.HasOne("Eventers.Shared.Domain.Eventee", "Eventee")
                         .WithMany()
@@ -664,9 +670,9 @@ namespace Eventers.Server.Data.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Event");
-
                     b.Navigation("Eventee");
+
+                    b.Navigation("EVENTER");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

@@ -31,7 +31,7 @@ namespace Eventers.Server.Controllers
         public async Task<IActionResult> GetEventers()
         {
             //return await _context.Eventers.ToListAsync();
-            var eventers = await _unitOfWork.Eventers.GetAll();
+            var eventers = await _unitOfWork.EVENTERS.GetAll();
             return Ok(eventers);
         }
 
@@ -41,7 +41,7 @@ namespace Eventers.Server.Controllers
         public async Task<IActionResult> GetEventer(int id)
         {
             //var Eventer = await _context.Eventers.FindAsync(id);
-            var eventer = await _unitOfWork.Eventers.Get(q => q.Id == id);
+            var eventer = await _unitOfWork.EVENTERS.Get(q => q.Id == id);
 
             if (eventer == null)
             {
@@ -54,7 +54,7 @@ namespace Eventers.Server.Controllers
         // PUT: api/Eventers/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutEventer(int id, Eventer eventer)
+        public async Task<IActionResult> PutEventer(int id, EVENTER eventer)
         {
             if (id != eventer.Id)
             {
@@ -62,7 +62,7 @@ namespace Eventers.Server.Controllers
             }
 
             //_context.Entry(Eventer).State = EntityState.Modified;
-            _unitOfWork.Eventers.Update(eventer);
+            _unitOfWork.EVENTERS.Update(eventer);
 
             try
             {
@@ -88,11 +88,11 @@ namespace Eventers.Server.Controllers
         // POST: api/Eventers
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<ActionResult<Eventer>> PostEventer(Eventer eventer)
+        public async Task<ActionResult<EVENTER>> PostEventer(EVENTER eventer)
         {
             //_context.Eventers.Add(Eventer);
             //await _context.SaveChangesAsync();
-            await _unitOfWork.Eventers.Insert(eventer);
+            await _unitOfWork.EVENTERS.Insert(eventer);
             await _unitOfWork.Save(HttpContext);
 
             return CreatedAtAction("GetEventer", new { id = eventer.Id }, eventer);
@@ -103,7 +103,7 @@ namespace Eventers.Server.Controllers
         public async Task<IActionResult> DeleteEventer(int id)
         {
             //var Eventer = await _context.Eventers.FindAsync(id);
-            var eventer = await _unitOfWork.Eventers.Get(q => q.Id == id);
+            var eventer = await _unitOfWork.EVENTERS.Get(q => q.Id == id);
             if (eventer == null)
             {
                 return NotFound();
@@ -111,7 +111,7 @@ namespace Eventers.Server.Controllers
 
             //_context.Eventers.Remove(Eventer);
             //await _context.SaveChangesAsync();
-            await _unitOfWork.Eventers.Delete(id);
+            await _unitOfWork.EVENTERS.Delete(id);
             await _unitOfWork.Save(HttpContext);
 
             return NoContent();
@@ -121,7 +121,7 @@ namespace Eventers.Server.Controllers
         private async Task<bool> EventerExists(int id)
         {
             //return _context.Eventers.Any(e => e.Id == id);
-            var eventer = await _unitOfWork.Eventers.Get(q => q.Id == id);
+            var eventer = await _unitOfWork.EVENTERS.Get(q => q.Id == id);
             return eventer != null;
         }
     }

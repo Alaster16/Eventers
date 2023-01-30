@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Eventers.Shared.Domain
 {
-    public class Eventer : BaseDomainModel
+    public class EVENTER : BaseDomainModel
     {
         public int EventerID { get; set; }
         public string Title { get; set; }

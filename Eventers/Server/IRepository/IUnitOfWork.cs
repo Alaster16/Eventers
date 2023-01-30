@@ -11,7 +11,7 @@ namespace Eventers.Server.IRepository
     public interface IUnitOfWork : IDisposable
     {
         Task Save(HttpContext httpContext);
-        IGenericRepository<Eventer> Eventers { get; }
+        IGenericRepository<EVENTER> EVENTERS { get; }
         IGenericRepository<Staff> Staffs { get; }
         IGenericRepository<Eventee> Eventees { get; }
         IGenericRepository<Payment> Payments { get; }

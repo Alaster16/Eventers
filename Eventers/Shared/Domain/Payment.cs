@@ -13,8 +13,9 @@ namespace Eventers.Shared.Domain
         public int CardNumber { get; set; }
         public int CVC { get; set; }
         public int EventeeID { get; set; }
+        public int PaymentAmount { get; set; }
         public virtual Eventee Eventee { get; set; }
         public int EventID { get; set; }
-        public virtual Eventer Eventers { get; set; }
+        public virtual EVENTER EVENTER { get; set; }
     }
 }
