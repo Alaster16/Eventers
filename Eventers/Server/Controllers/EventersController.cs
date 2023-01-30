@@ -31,7 +31,7 @@ namespace Eventers.Server.Controllers
         public async Task<IActionResult> GetEventers()
         {
             //return await _context.Eventers.ToListAsync();
-            var eventers = await _unitOfWork.EVENTERS.GetAll();
+            var eventers = await _unitOfWork.EVENTERS.GetAll(includes: q => q.Include(x => x.Company).Include(x => x.Staff));
             return Ok(eventers);
         }
 

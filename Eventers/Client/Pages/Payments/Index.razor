@@ -4,7 +4,7 @@
 @attribute [Authorize]
 
 
-<h3 class="card-title">Company Name</h3>
+<h3 class="card-title">Payments</h3>
 @if (Payments == null)
 {
     <div class="alert alert-info">Loading Payments...</div>
@@ -15,6 +15,7 @@ else
         <thead>
             <tr>
                 <th>Payment ID</th>
+                <th>Payment Amount</th>
                 <th>Payment Method</th>
                 <th>Card Number</th>
                 <th>CVC</th>
@@ -30,12 +31,13 @@ else
             {
             <tr>
                 <td>@payment.PaymentID</td>
+                <td>@payment.PaymentAmount</td>
                 <td>@payment.PaymentMethod</td>
                 <td>@payment.CardNumber</td>
                 <td>@payment.CVC</td>
                 <td>@payment.Eventee</td>
                 <td>@payment.EventeeID</td>
-               
+
 
 
 

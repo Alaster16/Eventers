@@ -32,7 +32,7 @@ namespace Eventers.Server.Controllers
         public async Task<IActionResult> GetPayments()
         {
             //return await _context.Payments.ToListAsync();
-            var payments = await _unitOfWork.Payments.GetAll();
+            var payments = await _unitOfWork.Payments.GetAll(includes: q => q.Include(x => x.EVENTER).Include(x => x.Eventee));
             return Ok(payments);
         }
 
