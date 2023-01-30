@@ -1,0 +1,111 @@
+﻿@inject HttpClient _client
+@using Eventers.Client.Component
+
+<h3></h3>
+
+<EditForm Model="@EVENTER" OnValidSubmit="@OnValidSubmit">
+    <DataAnnotationsValidator />
+    <ValidationSummary />
+
+    <fieldset disabled="@Disabled">
+        <div class="form-group">
+            <label>Company: </label>
+            <div>
+                <InputSelect @bind-Value="EVENTER.CompanyId" class="form-control">
+                    <option value="">-- Select Company --</option>
+                    @if (Companies != null)
+                    {
+                        foreach (var company in Companies)
+                        {
+                            <option value="@company.Id">@company.CompanyName</option>
+                        }
+                    }
+                </InputSelect>
+                <ValidationMessage For="@(() => EVENTER.CompanyId)" />
+            </div>
+        </div>
+    </fieldset>
+
+    <fieldset disabled="@Disabled">
+        <div class="form-group">
+            <label>Staff: </label>
+            <div>
+                <InputSelect @bind-Value="EVENTER.StaffId" class="form-control">
+                    <option value="">-- Select Staff --</option>
+                    @if (Companies != null)
+                    {
+                        foreach (var staff in Staffs)
+                        {
+                            <option value="@staff.Id">@staff.StaffName</option>
+                        }
+                    }
+                </InputSelect>
+                <ValidationMessage For="@(() => EVENTER.Id)" />
+            </div>
+        </div>
+    </fieldset>
+
+    <fieldset disabled="@Disabled">
+        <div class="form-group">
+            <label>Event Title: </label>
+            <div>
+                <InputText @bind-Value="EVENTER.Title" class="form-control" />
+                <ValidationMessage For="@(() => EVENTER.Title)" />
+            </div>
+        </div>
+    </fieldset>
+
+    <fieldset disabled="@Disabled">
+        <div class="form-group">
+            <label>Event Location: </label>
+            <div>
+                <InputText @bind-Value="EVENTER.Location" class="form-control" />
+                <ValidationMessage For="@(() => EVENTER.Location)" />
+            </div>
+        </div>
+    </fieldset>
+
+    <fieldset disabled="@Disabled">
+        <div class="form-group">
+            <label>Ticket Price: </label>
+            <div>
+                <InputNumber @bind-Value="EVENTER.TicketPrice" class="form-control" />
+                <ValidationMessage For="@(() => EVENTER.TicketPrice)" />
+            </div>
+        </div>
+    </fieldset>
+
+    <fieldset disabled="@Disabled">
+        <div class="form-group">
+            <label>Event Date: </label>
+            <div>
+                <InputDate @bind-Value="EVENTER.Date" class="form-control" />
+                <ValidationMessage For="@(() => EVENTER.Date)" />
+            </div>
+        </div>
+    </fieldset>
+            @if (!Disabled)
+            {
+            <button type="submit" class="btn btn-success btn-block">
+                @ButtonText
+            </button>
+            }
+            <BackToList Target="Eventers" />
+
+</EditForm>
+@code {
+    [Parameter] public bool Disabled { get; set; } = false;
+    [Parameter] public EVENTER EVENTER { get; set; }
+    [Parameter] public string ButtonText { get; set; } = "Save";
+    [Parameter] public EventCallback OnValidSubmit { get; set; }
+
+    private IList<Company> Companies;
+    private IList<Staff> Staffs;
+
+    protected async override Task OnInitializedAsync()
+    {
+        Companies = await _client.GetFromJsonAsync<List<Company>>($"{Endpoints.CompaniesEndpoint}");
+        Staffs = await _client.GetFromJsonAsync<List<Staff>>($"{Endpoints.StaffsEndpoint}");
+    }
+
+}

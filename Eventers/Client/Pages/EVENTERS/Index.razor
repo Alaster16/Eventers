@@ -25,6 +25,7 @@ else
                 <th>Title</th>
                 <th>Location</th>
                 <th>Date</th>
+                <th>Ticket Price</th>
                 <th>Company</th>
                 <th>Staff</th>
 
@@ -34,25 +35,26 @@ else
         <tbody>
             @foreach (var eventer in Eventers)
             {
-                <tr>
-                    <td>@eventer.Title</td>
-                    <td>@eventer.Location</td>
-                    <td>@eventer.Date</td>
-                    <td>@eventer.Company.CompanyName</td>
-                    <td>@eventer.Staff.StaffName</td>
-                    <td>
-                        <a href="/Eventers/view/@eventer.Id" class="btn btn-primary">
-                            <span class="oi oi-book"></span>
-                        </a>
-                        <a href="/Eventers/edit/@eventer.Id" class="btn btn-warning">
-                            <span class="oi oi-pencil"></span>
-                        </a>
-                        <button class="btn btn-danger" @onclick="@(()=>Delete(eventer.Id))">
-                            <span class="oi oi-delete"></span>
-                        </button>
+            <tr>
+                <td>@eventer.Title</td>
+                <td>@eventer.Location</td>
+                <td>@eventer.Date</td>
+                <td>@eventer.TicketPrice</td>
+                <td>@eventer.Company.CompanyName</td>
+                <td>@eventer.Staff.StaffName</td>
+                <td>
+                    <a href="/Eventers/view/@eventer.Id" class="btn btn-primary">
+                        <span class="oi oi-book"></span>
+                    </a>
+                    <a href="/Eventers/edit/@eventer.Id" class="btn btn-warning">
+                        <span class="oi oi-pencil"></span>
+                    </a>
+                    <button class="btn btn-danger" @onclick="@(()=>Delete(eventer.Id))">
+                        <span class="oi oi-delete"></span>
+                    </button>
 
-                    </td>
-                </tr>
+                </td>
+            </tr>
             }
         </tbody>
     </table>

@@ -5,6 +5,13 @@
 
 
 <h3 class="card-title">Payments</h3>
+<br />
+<a href="/Payments/create" class="btn btn-secondary">
+    <span class="oi oi-plus"></span>
+    Make New Payment
+</a>
+<br />
+<br />
 @if (Payments == null)
 {
     <div class="alert alert-info">Loading Payments...</div>
@@ -14,13 +21,12 @@ else
     <table class="table table-responsive">
         <thead>
             <tr>
-                <th>Payment ID</th>
-                <th>Payment Amount</th>
                 <th>Payment Method</th>
                 <th>Card Number</th>
                 <th>CVC</th>
+                <th>Payment Amount</th>
+                <th>Event</th>
                 <th>Eventee Name</th>
-                <th>Eventee ID</th>
 
 
                 <th>Actions</th>
@@ -30,22 +36,22 @@ else
             @foreach (var payment in Payments)
             {
             <tr>
-                <td>@payment.PaymentID</td>
-                <td>@payment.PaymentAmount</td>
                 <td>@payment.PaymentMethod</td>
                 <td>@payment.CardNumber</td>
                 <td>@payment.CVC</td>
+                <th>@payment.EVENTER.Title</th>
+                <th>@payment.EVENTER.TicketPrice</th>
                 <td>@payment.Eventee</td>
-                <td>@payment.EventeeID</td>
+
 
 
 
 
                 <td>
-                    <a href="/eventees/view/@payment.Id" class="btn btn-primary">
+                    <a href="/Payments/view/@payment.Id" class="btn btn-primary">
                         <span class="oi oi-book"></span>
                     </a>
-                    <a href="/eventees/edit/@payment.Id" class="btn btn-warning">
+                    <a href="/Payments/edit/@payment.Id" class="btn btn-warning">
                         <span class="oi oi-pencil"></span>
                     </a>
                     <button class="btn btn-danger" @onclick="@(()=>Delete(payment.Id))">
@@ -69,13 +75,13 @@ else
 
     }
 
-    async Task Delete(int paymentId)
+    async Task Delete(int PaymentId)
     {
-        var payment = Payments.First(q => q.Id == paymentId);
-        var confirm = await js.InvokeAsync<bool>("confirm", $"Do you want to delete {payment.PaymentID}?");
+        var payment = Payments.First(q => q.Id == PaymentId);
+        var confirm = await js.InvokeAsync<bool>("confirm", $"Do you want to delete {payment.Id}?");
         if (confirm)
         {
-            await _client.DeleteAsync($"{Endpoints.PaymentsEndpoint}/{paymentId}");
+            await _client.DeleteAsync($"{Endpoints.PaymentsEndpoint}/{PaymentId}");
             await OnInitializedAsync();
         }
 

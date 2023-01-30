@@ -8,14 +8,12 @@ namespace Eventers.Shared.Domain
 {
     public class Payment : BaseDomainModel
     {
-        public int PaymentID { get; set; }
         public string PaymentMethod { get; set; }
         public int CardNumber { get; set; }
         public int CVC { get; set; }
-        public int EventeeID { get; set; }
-        public int PaymentAmount { get; set; }
+        public int EventeeId { get; set; }
         public virtual Eventee Eventee { get; set; }
-        public int EventID { get; set; }
+        public int EventerId { get; set; }
         public virtual EVENTER EVENTER { get; set; }
     }
 }

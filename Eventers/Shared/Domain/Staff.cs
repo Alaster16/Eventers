@@ -8,7 +8,6 @@ namespace Eventers.Shared.Domain
 {
     public class Staff : BaseDomainModel
     {
-        public int StaffID { get; set; }
         public string StaffName { get; set; }
         public string StaffEmail { get; set; }
         public int StaffNumber { get; set; }

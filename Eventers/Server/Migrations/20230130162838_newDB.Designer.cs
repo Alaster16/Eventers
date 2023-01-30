@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Eventers.Server.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20230130063956_newDB")]
+    [Migration("20230130162838_newDB")]
     partial class newDB
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -99,14 +99,11 @@ namespace Eventers.Server.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("CompanyAdress")
+                    b.Property<string>("CompanyAddress")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("CompanyEmail")
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("CompanyID")
-                        .HasColumnType("int");
 
                     b.Property<string>("CompanyName")
                         .HasColumnType("nvarchar(max)");
@@ -134,27 +131,25 @@ namespace Eventers.Server.Migrations
                         new
                         {
                             Id = 1,
-                            CompanyAdress = "Changi Prison",
-                            CompanyEmail = "Superayam@gmail.com",
-                            CompanyID = 867375,
-                            CompanyName = "Superman123",
-                            CompanyNumber = 93572345,
+                            CompanyAddress = "1 One-north Cres, Singapore 138538",
+                            CompanyEmail = "Razer@gmail.com",
+                            CompanyName = "Razer",
+                            CompanyNumber = 65052188,
                             CreatedBy = "System",
-                            DateCreated = new DateTime(2023, 1, 30, 14, 39, 55, 719, DateTimeKind.Local).AddTicks(7090),
-                            DateUpdated = new DateTime(2023, 1, 30, 14, 39, 55, 719, DateTimeKind.Local).AddTicks(7096),
+                            DateCreated = new DateTime(2023, 1, 31, 0, 28, 38, 291, DateTimeKind.Local).AddTicks(6515),
+                            DateUpdated = new DateTime(2023, 1, 31, 0, 28, 38, 291, DateTimeKind.Local).AddTicks(6522),
                             UpdatedBy = "System"
                         },
                         new
                         {
                             Id = 2,
-                            CompanyAdress = "Dairy Farm",
-                            CompanyEmail = "Superpork@gmail.com",
-                            CompanyID = 565866,
-                            CompanyName = "Batman123",
-                            CompanyNumber = 93657364,
+                            CompanyAddress = "Sim Lim Square, #02-21 Rochor Canal Rd, 188504",
+                            CompanyEmail = "Xtreme@gmail.com",
+                            CompanyName = "Xtreme Solution Pte Ltd",
+                            CompanyNumber = 63389566,
                             CreatedBy = "System",
-                            DateCreated = new DateTime(2023, 1, 30, 14, 39, 55, 719, DateTimeKind.Local).AddTicks(8190),
-                            DateUpdated = new DateTime(2023, 1, 30, 14, 39, 55, 719, DateTimeKind.Local).AddTicks(8194),
+                            DateCreated = new DateTime(2023, 1, 31, 0, 28, 38, 291, DateTimeKind.Local).AddTicks(7464),
+                            DateUpdated = new DateTime(2023, 1, 31, 0, 28, 38, 291, DateTimeKind.Local).AddTicks(7468),
                             UpdatedBy = "System"
                         });
                 });
@@ -166,7 +161,7 @@ namespace Eventers.Server.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int>("CompanyID")
+                    b.Property<int>("CompanyId")
                         .HasColumnType("int");
 
                     b.Property<string>("CreatedBy")
@@ -181,13 +176,13 @@ namespace Eventers.Server.Migrations
                     b.Property<DateTime>("DateUpdated")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("EventerID")
-                        .HasColumnType("int");
-
                     b.Property<string>("Location")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("StaffID")
+                    b.Property<int>("StaffId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("TicketPrice")
                         .HasColumnType("int");
 
                     b.Property<string>("Title")
@@ -198,9 +193,9 @@ namespace Eventers.Server.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("CompanyID");
+                    b.HasIndex("CompanyId");
 
-                    b.HasIndex("StaffID");
+                    b.HasIndex("StaffId");
 
                     b.ToTable("EVENTERS");
                 });
@@ -233,9 +228,6 @@ namespace Eventers.Server.Migrations
                     b.Property<string>("Email")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("EventeeID")
-                        .HasColumnType("int");
-
                     b.Property<string>("Gender")
                         .HasColumnType("nvarchar(max)");
 
@@ -259,14 +251,13 @@ namespace Eventers.Server.Migrations
                             Address = "Jurong East",
                             ContactNumber = 86118499,
                             CreatedBy = "System",
-                            DateCreated = new DateTime(2023, 1, 30, 14, 39, 55, 717, DateTimeKind.Local).AddTicks(7005),
+                            DateCreated = new DateTime(2023, 1, 31, 0, 28, 38, 289, DateTimeKind.Local).AddTicks(1799),
                             DateOfBirth = 2002,
-                            DateUpdated = new DateTime(2023, 1, 30, 14, 39, 55, 718, DateTimeKind.Local).AddTicks(5526),
+                            DateUpdated = new DateTime(2023, 1, 31, 0, 28, 38, 290, DateTimeKind.Local).AddTicks(2010),
                             Email = "njx2002@gmail.com",
-                            EventeeID = 112233,
                             Gender = "Male",
                             NRIC = 53,
-                            Name = "Alaster",
+                            Name = "Benson",
                             UpdatedBy = "System"
                         },
                         new
@@ -275,11 +266,10 @@ namespace Eventers.Server.Migrations
                             Address = "Jurong West",
                             ContactNumber = 96731728,
                             CreatedBy = "System",
-                            DateCreated = new DateTime(2023, 1, 30, 14, 39, 55, 718, DateTimeKind.Local).AddTicks(7448),
+                            DateCreated = new DateTime(2023, 1, 31, 0, 28, 38, 290, DateTimeKind.Local).AddTicks(4474),
                             DateOfBirth = 1865,
-                            DateUpdated = new DateTime(2023, 1, 30, 14, 39, 55, 718, DateTimeKind.Local).AddTicks(7453),
+                            DateUpdated = new DateTime(2023, 1, 31, 0, 28, 38, 290, DateTimeKind.Local).AddTicks(4480),
                             Email = "jeffng@gmail.com",
-                            EventeeID = 334455,
                             Gender = "Female",
                             NRIC = 193,
                             Name = "Jeff",
@@ -309,19 +299,10 @@ namespace Eventers.Server.Migrations
                     b.Property<DateTime>("DateUpdated")
                         .HasColumnType("datetime2");
 
-                    b.Property<int?>("EVENTERId")
+                    b.Property<int>("EventeeId")
                         .HasColumnType("int");
 
-                    b.Property<int>("EventID")
-                        .HasColumnType("int");
-
-                    b.Property<int>("EventeeID")
-                        .HasColumnType("int");
-
-                    b.Property<int>("PaymentAmount")
-                        .HasColumnType("int");
-
-                    b.Property<int>("PaymentID")
+                    b.Property<int>("EventerID")
                         .HasColumnType("int");
 
                     b.Property<string>("PaymentMethod")
@@ -332,9 +313,9 @@ namespace Eventers.Server.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("EVENTERId");
+                    b.HasIndex("EventeeId");
 
-                    b.HasIndex("EventeeID");
+                    b.HasIndex("EventerID");
 
                     b.ToTable("Payments");
                 });
@@ -358,9 +339,6 @@ namespace Eventers.Server.Migrations
                     b.Property<string>("StaffEmail")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("StaffID")
-                        .HasColumnType("int");
-
                     b.Property<string>("StaffName")
                         .HasColumnType("nvarchar(max)");
 
@@ -379,11 +357,10 @@ namespace Eventers.Server.Migrations
                         {
                             Id = 1,
                             CreatedBy = "System",
-                            DateCreated = new DateTime(2023, 1, 30, 14, 39, 55, 720, DateTimeKind.Local).AddTicks(584),
-                            DateUpdated = new DateTime(2023, 1, 30, 14, 39, 55, 720, DateTimeKind.Local).AddTicks(589),
-                            StaffEmail = "Gingerbreast@gmail.com",
-                            StaffID = 357683,
-                            StaffName = "Gingerbread",
+                            DateCreated = new DateTime(2023, 1, 31, 0, 28, 38, 292, DateTimeKind.Local).AddTicks(291),
+                            DateUpdated = new DateTime(2023, 1, 31, 0, 28, 38, 292, DateTimeKind.Local).AddTicks(297),
+                            StaffEmail = "Alaster@gmail.com",
+                            StaffName = "Alaster",
                             StaffNumber = 86843757,
                             UpdatedBy = "System"
                         },
@@ -391,11 +368,10 @@ namespace Eventers.Server.Migrations
                         {
                             Id = 2,
                             CreatedBy = "System",
-                            DateCreated = new DateTime(2023, 1, 30, 14, 39, 55, 720, DateTimeKind.Local).AddTicks(1324),
-                            DateUpdated = new DateTime(2023, 1, 30, 14, 39, 55, 720, DateTimeKind.Local).AddTicks(1327),
-                            StaffEmail = "Gingerball@gmail.com",
-                            StaffID = 657485,
-                            StaffName = "Gingerballs",
+                            DateCreated = new DateTime(2023, 1, 31, 0, 28, 38, 292, DateTimeKind.Local).AddTicks(1005),
+                            DateUpdated = new DateTime(2023, 1, 31, 0, 28, 38, 292, DateTimeKind.Local).AddTicks(1009),
+                            StaffEmail = "AnselSoh@gmail.com",
+                            StaffName = "Ansel Soh",
                             StaffNumber = 93768486,
                             UpdatedBy = "System"
                         });
@@ -643,13 +619,13 @@ namespace Eventers.Server.Migrations
                 {
                     b.HasOne("Eventers.Shared.Domain.Company", "Company")
                         .WithMany()
-                        .HasForeignKey("CompanyID")
+                        .HasForeignKey("CompanyId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("Eventers.Shared.Domain.Staff", "Staff")
                         .WithMany()
-                        .HasForeignKey("StaffID")
+                        .HasForeignKey("StaffId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -660,13 +636,15 @@ namespace Eventers.Server.Migrations
 
             modelBuilder.Entity("Eventers.Shared.Domain.Payment", b =>
                 {
-                    b.HasOne("Eventers.Shared.Domain.EVENTER", "EVENTER")
-                        .WithMany()
-                        .HasForeignKey("EVENTERId");
-
                     b.HasOne("Eventers.Shared.Domain.Eventee", "Eventee")
                         .WithMany()
-                        .HasForeignKey("EventeeID")
+                        .HasForeignKey("EventeeId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Eventers.Shared.Domain.EVENTER", "EVENTER")
+                        .WithMany()
+                        .HasForeignKey("EventerID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 

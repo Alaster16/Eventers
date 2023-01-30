@@ -5,6 +5,7 @@
 <h3 class="card-title">Create New Event</h3>
 <hr />
 <br />
+
 <EditForm Model="@EVENTER" OnValidSubmit="CreateEvent">
     <DataAnnotationsValidator />
     <ValidationSummary />
@@ -13,34 +14,34 @@
     <div class="form-group">
         <label>Company: </label>
         <div>
-            <InputSelect @bind-Value="EVENTER.CompanyID" class="form-control">
+            <InputSelect @bind-Value="EVENTER.CompanyId" class="form-control">
                 <option value="">-- Select Company --</option>
                 @if (Companies != null)
                 {
                     foreach (var company in Companies)
                     {
-                        <option value="@company.CompanyID">@company.CompanyName</option>
+                        <option value="@company.Id">@company.CompanyName</option>
                     }
                 }
             </InputSelect>
-            <ValidationMessage For="@(() => EVENTER.CompanyID)" />
+            <ValidationMessage For="@(() => EVENTER.CompanyId)" />
         </div>
     </div>
 
     <div class="form-group">
         <label>Staff: </label>
         <div>
-            <InputSelect @bind-Value="EVENTER.StaffID" class="form-control">
+            <InputSelect @bind-Value="EVENTER.StaffId" class="form-control">
                 <option value="">-- Select Staff --</option>
                 @if (Companies != null)
                 {
                     foreach (var staff in Staffs)
                     {
-                        <option value="@staff.StaffID">@staff.StaffName</option>
+                        <option value="@staff.Id">@staff.StaffName</option>
                     }
                 }
             </InputSelect>
-            <ValidationMessage For="@(() => EVENTER.StaffID)" />
+            <ValidationMessage For="@(() => EVENTER.Id)" />
         </div>
     </div>
 
@@ -61,6 +62,14 @@
     </div>
 
     <div class="form-group">
+        <label>Ticket Price: </label>
+        <div>
+            <InputNumber @bind-Value="EVENTER.TicketPrice" class="form-control" />
+            <ValidationMessage For="@(() => EVENTER.TicketPrice)" />
+        </div>
+    </div>
+
+    <div class="form-group">
         <label>Event Date: </label>
         <div>
             <InputDate @bind-Value="EVENTER.Date" class="form-control" />
@@ -75,6 +84,7 @@
 </EditForm>
 
 @code {
+
     EVENTER EVENTER = new EVENTER();
 
     private IList<Company> Companies;

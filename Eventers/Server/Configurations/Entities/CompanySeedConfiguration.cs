@@ -20,10 +20,9 @@ namespace Eventers.Server.Configurations.Entities
                  DateUpdated = DateTime.Now,
                  CreatedBy = "System",
                  UpdatedBy = "System",
-                 CompanyID = 867375,
                  CompanyName = "Razer",
                  CompanyEmail = "Razer@gmail.com",
-                 CompanyAdress = "1 One-north Cres, Singapore 138538",
+                 CompanyAddress = "1 One-north Cres, Singapore 138538",
                  CompanyNumber = 65052188
              },
              new Company
@@ -33,10 +32,10 @@ namespace Eventers.Server.Configurations.Entities
                  DateUpdated = DateTime.Now,
                  CreatedBy = "System",
                  UpdatedBy = "System",
-                 CompanyID = 565866,
+   
                  CompanyName = "Xtreme Solution Pte Ltd",
                  CompanyEmail = "Xtreme@gmail.com",
-                 CompanyAdress = "Sim Lim Square, #02-21 Rochor Canal Rd, 188504",
+                 CompanyAddress = "Sim Lim Square, #02-21 Rochor Canal Rd, 188504",
                  CompanyNumber = 63389566
              }
              );

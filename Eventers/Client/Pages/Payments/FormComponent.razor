@@ -1,0 +1,122 @@
+﻿@inject HttpClient _client
+@using Eventers.Client.Component
+
+<h3></h3>
+
+<EditForm Model="@Payment" OnValidSubmit="@OnValidSubmit">
+    <DataAnnotationsValidator />
+    <ValidationSummary />
+
+    <fieldset disabled="@Disabled">
+        <div class="form-group">
+            <label>Payment Method: </label>
+            <div>
+                <InputText @bind-Value="Payment.PaymentMethod" class="form-control" />
+                <ValidationMessage For="@(() => Payment.PaymentMethod)" />
+            </div>
+        </div>
+    </fieldset>
+
+    <fieldset disabled="@Disabled">
+        <div class="form-group">
+            <label>Card Number: </label>
+            <div>
+                <InputNumber @bind-Value="Payment.CardNumber" class="form-control" />
+                <ValidationMessage For="@(() => Payment.CardNumber)" />
+            </div>
+        </div>
+    </fieldset>
+
+    <fieldset disabled="@Disabled">
+        <div class="form-group">
+            <label>CVC: </label>
+            <div>
+                <InputNumber @bind-Value="Payment.CVC" class="form-control" />
+                <ValidationMessage For="@(() => Payment.CVC)" />
+            </div>
+        </div>
+    </fieldset>
+
+    <fieldset disabled="@Disabled">
+        <div class="form-group">
+            <label>Payment Amount: </label>
+            <div>
+                <InputSelect @bind-Value="Payment.EventerId" class="form-control">
+                    <option value="">-- Select Amount(According to event you are joining) --</option>
+                    @if (EVENTERS != null)
+                    {
+                        foreach (var Eventer in EVENTERS)
+                        {
+                            <option value="@Eventer.Id">@Eventer.TicketPrice</option>
+                        }
+                    }
+                </InputSelect>
+                <ValidationMessage For="@(() => Payment.Id)" />
+            </div>
+        </div>
+    </fieldset>
+
+    <fieldset disabled="@Disabled">
+        <div class="form-group">
+            <label>Event: </label>
+            <div>
+                <InputSelect @bind-Value="Payment.EventerId" class="form-control">
+                    <option value="">-- Select Event --</option>
+                    @if (EVENTERS != null)
+                    {
+                        foreach (var Eventer in EVENTERS)
+                        {
+                            <option value="@Eventer.Id">@Eventer.Title</option>
+                        }
+                    }
+                </InputSelect>
+                <ValidationMessage For="@(() => Payment.Id)" />
+            </div>
+        </div>
+    </fieldset>
+
+    <fieldset disabled="@Disabled">
+        <div class="form-group">
+            <label>Name: </label>
+            <div>
+                <InputSelect @bind-Value="Payment.EventeeId" class="form-control">
+                    <option value="">-- Your Name --</option>
+                    @if (Eventees != null)
+                    {
+                        foreach (var Eventee in Eventees)
+                        {
+                            <option value="@Eventee.Id">@Eventee.Name</option>
+                        }
+                    }
+                </InputSelect>
+                <ValidationMessage For="@(() => Payment.Id)" />
+            </div>
+        </div>
+    </fieldset>
+
+
+    @if (!Disabled)
+    {
+        <button type="submit" class="btn btn-success btn-block">
+            @ButtonText
+        </button>
+    }
+    <BackToList Target="Eventers" />
+
+</EditForm>
+@code {
+    [Parameter] public bool Disabled { get; set; } = false;
+    [Parameter] public Payment Payment { get; set; }
+    [Parameter] public string ButtonText { get; set; } = "Save";
+    [Parameter] public EventCallback OnValidSubmit { get; set; }
+
+    private IList<Eventee> Eventees;
+    private IList<EVENTER> EVENTERS;
+
+    protected async override Task OnInitializedAsync()
+    {
+        Eventees = await _client.GetFromJsonAsync<List<Eventee>>($"{Endpoints.EventeesEndpoint}");
+        EVENTERS = await _client.GetFromJsonAsync<List<EVENTER>>($"{Endpoints.EventersEndpoint}");
+    }
+
+}

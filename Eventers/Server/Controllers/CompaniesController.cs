@@ -73,7 +73,7 @@ namespace Eventers.Server.Controllers
             catch (DbUpdateConcurrencyException)
             {
                 //if (!companyExists(id))
-                if (!await companyExists(id))
+                if (!await CompanyExists(id))
                 {
                     return NotFound();
                 }
@@ -119,7 +119,7 @@ namespace Eventers.Server.Controllers
         }
 
         //private bool companyExists(int id)
-        private async Task<bool> companyExists(int id)
+        private async Task<bool> CompanyExists(int id)
         {
             //return _context.Companies.Any(e => e.Id == id);
             var company = await _unitOfWork.Companies.Get(q => q.Id == id);

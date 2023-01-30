@@ -14,11 +14,11 @@ else
     <table class="table table-responsive">
         <thead>
             <tr>
-                <th>Company ID</th>
                 <th>Company Name</th>
                 <th>Company Email</th>
+                <th>Company Address</th>
                 <th>Company Number</th>
-           
+
 
                 <th>Actions</th>
             </tr>
@@ -26,25 +26,25 @@ else
         <tbody>
             @foreach (var company in Companies)
             {
-                <tr>
-                    <td>@company.CompanyID</td>
-                    <td>@company.CompanyName</td>
-                    <td>@company.CompanyEmail</td>
-                    <td>@company.CompanyNumber</td>
-            
+            <tr>
+                <td>@company.CompanyName</td>
+                <td>@company.CompanyEmail</td>
+                <td>@company.CompanyAddress</td>
+                <td>@company.CompanyNumber</td>
 
-                    <td>
-                        <a href="/eventees/view/@company.Id" class="btn btn-primary">
-                            <span class="oi oi-book"></span>
-                        </a>
-                        <a href="/eventees/edit/@company.Id" class="btn btn-warning">
-                            <span class="oi oi-pencil"></span>
-                        </a>
-                        <button class="btn btn-danger" @onclick="@(()=>Delete(company.Id))">
-                            <span class="oi oi-delete"></span>
-                        </button>
-                    </td>
-                </tr>
+
+                <td>
+                    <a href="/eventees/view/@company.Id" class="btn btn-primary">
+                        <span class="oi oi-book"></span>
+                    </a>
+                    <a href="/eventees/edit/@company.Id" class="btn btn-warning">
+                        <span class="oi oi-pencil"></span>
+                    </a>
+                    <button class="btn btn-danger" @onclick="@(()=>Delete(company.Id))">
+                        <span class="oi oi-delete"></span>
+                    </button>
+                </td>
+            </tr>
             }
         </tbody>
     </table>

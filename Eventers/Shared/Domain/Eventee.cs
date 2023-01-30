@@ -8,7 +8,6 @@ namespace Eventers.Shared.Domain
 {
     public class Eventee : BaseDomainModel
     {
-        public int EventeeID { get; set; }
         public string Name { get; set; }
         public string Address { get; set; }
         public int NRIC { get; set; }
