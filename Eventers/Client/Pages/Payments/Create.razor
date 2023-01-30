@@ -2,98 +2,96 @@
 @inject HttpClient _client
 @inject NavigationManager _navManager
 
-<h3 class="card-title">Make New Payment</h3>
+<h3 class="card-title">Join</h3>
 <hr />
 <br />
 <EditForm Model="@Payment" OnValidSubmit="CreatePayment">
     <DataAnnotationsValidator />
     <ValidationSummary />
 
-    
-        <div class="form-group">
-            <label>Payment Method: </label>
-            <div>
-                <InputText @bind-Value="Payment.PaymentMethod" class="form-control" />
-                <ValidationMessage For="@(() => Payment.PaymentMethod)" />
-            </div>
-        </div>
-    
 
-    
-        <div class="form-group">
-            <label>Card Number: </label>
-            <div>
-                <InputNumber @bind-Value="Payment.CardNumber" class="form-control" />
-                <ValidationMessage For="@(() => Payment.CardNumber)" />
-            </div>
-        </div>
-    
-
-    
-        <div class="form-group">
-            <label>CVC: </label>
-            <div>
-                <InputNumber @bind-Value="Payment.CVC" class="form-control" />
-                <ValidationMessage For="@(() => Payment.CVC)" />
-            </div>
-        </div>
-    
-        <div class="form-group">
-            <label>Payment Amount: </label>
-            <div>
-                <InputSelect @bind-Value="Payment.EventerId" class="form-control">
-                    <option value="">-- Select Amount(According to event you are joining) --</option>
-                    @if (EVENTERS != null)
+    <div class="form-group">
+        <label>Name: </label>
+        <div>
+            <InputSelect @bind-Value="Payment.EventeeId" class="form-control">
+                <option value="">-- Your Name --</option>
+                @if (Eventees != null)
+                {
+                    foreach (var Eventee in Eventees)
                     {
-                        foreach (var Eventer in EVENTERS)
-                        {
-                            <option value="@Eventer.Id">@Eventer.TicketPrice</option>
-                        }
+                        <option value="@Eventee.Id">@Eventee.Name</option>
                     }
-                </InputSelect>
-                <ValidationMessage For="@(() => Payment.EventerId)" />
-            </div>
+                }
+            </InputSelect>
+            <ValidationMessage For="@(() => Payment.EventerId)" />
         </div>
-    
-        <div class="form-group">
-            <label>Event: </label>
-            <div>
-                <InputSelect @bind-Value="Payment.EventerId" class="form-control">
-                    <option value="">-- Select Event --</option>
-                    @if (EVENTERS != null)
-                    {
-                        foreach (var Eventer in EVENTERS)
-                        {
-                            <option value="@Eventer.Id">@Eventer.Title</option>
-                        }
-                    }
-                </InputSelect>
-                <ValidationMessage For="@(() => Payment.EventerId)" />
-            </div>
-        </div>
-    
+    </div>
 
-    
-        <div class="form-group">
-            <label>Name: </label>
-            <div>
-                <InputSelect @bind-Value="Payment.EventeeId" class="form-control">
-                    <option value="">-- Your Name --</option>
-                    @if (Eventees != null)
-                    {
-                        foreach (var Eventee in Eventees)
-                        {
-                            <option value="@Eventee.Id">@Eventee.Name</option>
-                        }
-                    }
-                </InputSelect>
-                <ValidationMessage For="@(() => Payment.EventerId)" />
-            </div>
+    <div class="form-group">
+        <label>Payment Method: </label>
+        <div>
+            <InputText @bind-Value="Payment.PaymentMethod" class="form-control" />
+            <ValidationMessage For="@(() => Payment.PaymentMethod)" />
         </div>
+    </div>
 
-        <button type="submit" class="btn btn-success btn-block">
-            Make Payment
-        </button>
+
+
+    <div class="form-group">
+        <label>Card Number: </label>
+        <div>
+            <InputNumber @bind-Value="Payment.CardNumber" class="form-control" />
+            <ValidationMessage For="@(() => Payment.CardNumber)" />
+        </div>
+    </div>
+
+
+
+    <div class="form-group">
+        <label>CVC: </label>
+        <div>
+            <InputNumber @bind-Value="Payment.CVC" class="form-control" />
+            <ValidationMessage For="@(() => Payment.CVC)" />
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label>Payment Amount: </label>
+        <div>
+            <InputSelect @bind-Value="Payment.EventerId" class="form-control">
+                <option value="">-- Select Amount(According to event you are joining) --</option>
+                @if (EVENTERS != null)
+                {
+                    foreach (var Eventer in EVENTERS)
+                    {
+                        <option value="@Eventer.Id">@Eventer.TicketPrice</option>
+                    }
+                }
+            </InputSelect>
+            <ValidationMessage For="@(() => Payment.EventerId)" />
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label>Event: </label>
+        <div>
+            <InputSelect @bind-Value="Payment.EventerId" class="form-control">
+                <option value="">-- Select Event --</option>
+                @if (EVENTERS != null)
+                {
+                    foreach (var Eventer in EVENTERS)
+                    {
+                        <option value="@Eventer.Id">@Eventer.Title</option>
+                    }
+                }
+            </InputSelect>
+            <ValidationMessage For="@(() => Payment.EventerId)" />
+        </div>
+    </div>
+
+    <button type="submit" class="btn btn-success btn-block">
+        Join
+    </button>
 
 
 </EditForm>

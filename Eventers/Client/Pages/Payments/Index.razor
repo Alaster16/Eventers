@@ -4,11 +4,11 @@
 @attribute [Authorize]
 
 
-<h3 class="card-title">Payments</h3>
+<h3 class="card-title">Join an event!</h3>
 <br />
 <a href="/Payments/create" class="btn btn-secondary">
     <span class="oi oi-plus"></span>
-    Make New Payment
+    Join
 </a>
 <br />
 <br />
@@ -21,12 +21,12 @@ else
     <table class="table table-responsive">
         <thead>
             <tr>
+                <th>Eventee Name</th>
                 <th>Payment Method</th>
                 <th>Card Number</th>
                 <th>CVC</th>
-                <th>Payment Amount</th>
                 <th>Event</th>
-                <th>Eventee Name</th>
+                <th>Payment Amount</th>
 
 
                 <th>Actions</th>
@@ -36,12 +36,13 @@ else
             @foreach (var payment in Payments)
             {
             <tr>
+                <td>@payment.Eventee.Name</td>
                 <td>@payment.PaymentMethod</td>
                 <td>@payment.CardNumber</td>
                 <td>@payment.CVC</td>
                 <th>@payment.EVENTER.Title</th>
                 <th>@payment.EVENTER.TicketPrice</th>
-                <td>@payment.Eventee</td>
+
 
 
 

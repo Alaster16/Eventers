@@ -9,6 +9,25 @@
 
     <fieldset disabled="@Disabled">
         <div class="form-group">
+            <label>Name: </label>
+            <div>
+                <InputSelect @bind-Value="Payment.EventeeId" class="form-control">
+                    <option value="">-- Your Name --</option>
+                    @if (Eventees != null)
+                    {
+                        foreach (var Eventee in Eventees)
+                        {
+                            <option value="@Eventee.Id">@Eventee.Name</option>
+                        }
+                    }
+                </InputSelect>
+                <ValidationMessage For="@(() => Payment.Id)" />
+            </div>
+        </div>
+    </fieldset>
+
+    <fieldset disabled="@Disabled">
+        <div class="form-group">
             <label>Payment Method: </label>
             <div>
                 <InputText @bind-Value="Payment.PaymentMethod" class="form-control" />
@@ -75,33 +94,13 @@
         </div>
     </fieldset>
 
-    <fieldset disabled="@Disabled">
-        <div class="form-group">
-            <label>Name: </label>
-            <div>
-                <InputSelect @bind-Value="Payment.EventeeId" class="form-control">
-                    <option value="">-- Your Name --</option>
-                    @if (Eventees != null)
-                    {
-                        foreach (var Eventee in Eventees)
-                        {
-                            <option value="@Eventee.Id">@Eventee.Name</option>
-                        }
-                    }
-                </InputSelect>
-                <ValidationMessage For="@(() => Payment.Id)" />
-            </div>
-        </div>
-    </fieldset>
-
-
     @if (!Disabled)
     {
         <button type="submit" class="btn btn-success btn-block">
             @ButtonText
         </button>
     }
-    <BackToList Target="Eventers" />
+    <BackToList Target="Payments" />
 
 </EditForm>
 @code {
