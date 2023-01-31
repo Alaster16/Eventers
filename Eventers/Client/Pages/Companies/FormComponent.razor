@@ -1,0 +1,62 @@
+﻿@inject HttpClient _client
+@using Eventers.Client.Component
+
+<h3></h3>
+
+<EditForm Model="@Company" OnValidSubmit="@OnValidSubmit">
+    <DataAnnotationsValidator />
+    <ValidationSummary />
+
+    <DataAnnotationsValidator />
+    <ValidationSummary />
+
+    <div class="form-group">
+        <label>Company Name: </label>
+        <div>
+            <InputText @bind-Value="Company.CompanyName" class="form-control" />
+            <ValidationMessage For="@(() => Company.CompanyName)" />
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label>Company Email: </label>
+        <div>
+            <InputText @bind-Value="Company.CompanyEmail" class="form-control" />
+            <ValidationMessage For="@(() => Company.CompanyEmail)" />
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label>Company Contact Number: </label>
+        <div>
+            <InputNumber @bind-Value="Company.CompanyNumber" class="form-control" />
+            <ValidationMessage For="@(() => Company.CompanyNumber)" />
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label>Company Address: </label>
+        <div>
+            <InputText @bind-Value="Company.CompanyAddress" class="form-control" />
+            <ValidationMessage For="@(() => Company.CompanyAddress)" />
+        </div>
+    </div>
+
+
+
+    <button type="submit" class="btn btn-success btn-block">
+        Confirm Edit
+    </button>
+    <BackToList Target="Companies" />
+
+</EditForm>
+@code {
+    [Parameter] public bool Disabled { get; set; } = false;
+    [Parameter] public Company Company { get; set; }
+    [Parameter] public string ButtonText { get; set; } = "Save";
+    [Parameter] public EventCallback OnValidSubmit { get; set; }
+
+
+
+
+}

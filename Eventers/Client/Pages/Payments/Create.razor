@@ -1,6 +1,7 @@
 ﻿@page "/Payments/create"
 @inject HttpClient _client
 @inject NavigationManager _navManager
+@using Eventers.Client.Component
 
 <h3 class="card-title">Join</h3>
 <hr />
@@ -9,6 +10,22 @@
     <DataAnnotationsValidator />
     <ValidationSummary />
 
+    <div class="form-group">
+        <label>Event: </label>
+        <div>
+            <InputSelect @bind-Value="Payment.EventerId" class="form-control">
+                <option value="">-- Select Event --</option>
+                @if (EVENTERS != null)
+                {
+                    foreach (var Eventer in EVENTERS)
+                    {
+                        <option value="@Eventer.Id">@Eventer.Title</option>
+                    }
+                }
+            </InputSelect>
+            <ValidationMessage For="@(() => Payment.EventerId)" />
+        </div>
+    </div>
 
     <div class="form-group">
         <label>Name: </label>
@@ -40,7 +57,7 @@
     <div class="form-group">
         <label>Card Number: </label>
         <div>
-            <InputNumber @bind-Value="Payment.CardNumber" class="form-control" />
+            <InputText @bind-Value="Payment.CardNumber" class="form-control" />
             <ValidationMessage For="@(() => Payment.CardNumber)" />
         </div>
     </div>
@@ -50,7 +67,7 @@
     <div class="form-group">
         <label>CVC: </label>
         <div>
-            <InputNumber @bind-Value="Payment.CVC" class="form-control" />
+            <InputText @bind-Value="Payment.CVC" class="form-control" />
             <ValidationMessage For="@(() => Payment.CVC)" />
         </div>
     </div>
@@ -72,27 +89,11 @@
         </div>
     </div>
 
-    <div class="form-group">
-        <label>Event: </label>
-        <div>
-            <InputSelect @bind-Value="Payment.EventerId" class="form-control">
-                <option value="">-- Select Event --</option>
-                @if (EVENTERS != null)
-                {
-                    foreach (var Eventer in EVENTERS)
-                    {
-                        <option value="@Eventer.Id">@Eventer.Title</option>
-                    }
-                }
-            </InputSelect>
-            <ValidationMessage For="@(() => Payment.EventerId)" />
-        </div>
-    </div>
-
     <button type="submit" class="btn btn-success btn-block">
         Join
     </button>
 
+    <BackToList Target="Payments" />
 
 </EditForm>
 

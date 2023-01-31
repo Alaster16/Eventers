@@ -1,0 +1,79 @@
+﻿@page "/Eventees/create"
+@inject HttpClient _client
+@inject NavigationManager _navManager
+@using Eventers.Client.Component
+
+<h3 class="card-title">Create New Eventee</h3>
+<hr />
+<br />
+
+<EditForm Model="@Eventee" OnValidSubmit="CreateEventee">
+    <DataAnnotationsValidator />
+    <ValidationSummary />
+
+    <div class="form-group">
+        <label>Eventee Name: </label>
+        <div>
+            <InputText @bind-Value="Eventee.Name" class="form-control" />
+            <ValidationMessage For="@(() => Eventee.Name)" />
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label>Eventee Address: </label>
+        <div>
+            <InputText @bind-Value="Eventee.Address" class="form-control" />
+            <ValidationMessage For="@(() => Eventee.Address)" />
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label>Eventee NRIC: </label>
+        <div>
+            <InputNumber @bind-Value="Eventee.NRIC" class="form-control" />
+            <ValidationMessage For="@(() => Eventee.NRIC)" />
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label>Eventee Contact Number: </label>
+        <div>
+            <InputNumber @bind-Value="Eventee.ContactNumber" class="form-control" />
+            <ValidationMessage For="@(() => Eventee.ContactNumber)" />
+        </div>
+    </div>
+    <div class="form-group">
+        <label>Eventee Gender: </label>
+        <div>
+            <InputText @bind-Value="Eventee.Gender" class="form-control" />
+            <ValidationMessage For="@(() => Eventee.Gender)" />
+        </div>
+    </div>
+    <div class="form-group">
+        <label>Eventee Email: </label>
+        <div>
+            <InputText @bind-Value="Eventee.Email" class="form-control" />
+            <ValidationMessage For="@(() => Eventee.Email)" />
+        </div>
+    </div>
+
+    <button type="submit" class="btn btn-success btn-block">
+        Create Event
+    </button>
+    <BackToList Target="Eventees" />
+</EditForm>
+
+@code {
+
+    Eventee Eventee = new Eventee();
+
+  
+
+    private async Task CreateEventee()
+    {
+        await _client.PostAsJsonAsync(Endpoints.EventeesEndpoint, Eventee);
+        _navManager.NavigateTo("/Eventees/");
+    }
+}
+
+

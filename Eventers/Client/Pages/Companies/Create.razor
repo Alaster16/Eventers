@@ -1,0 +1,67 @@
+﻿@page "/Companies/create"
+@inject HttpClient _client
+@inject NavigationManager _navManager
+@using Eventers.Client.Component
+
+<h3 class="card-title">Submit Company Particulars</h3>
+<hr />
+<br />
+
+<EditForm Model="@Company" OnValidSubmit="CreateCompany">
+    <DataAnnotationsValidator />
+    <ValidationSummary />
+
+    <div class="form-group">
+        <label>Company Name: </label>
+        <div>
+            <InputText @bind-Value="Company.CompanyName" class="form-control" />
+            <ValidationMessage For="@(() => Company.CompanyName)" />
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label>Company Email: </label>
+        <div>
+            <InputText @bind-Value="Company.CompanyEmail" class="form-control" />
+            <ValidationMessage For="@(() => Company.CompanyEmail)" />
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label>Company Contact Number: </label>
+        <div>
+            <InputNumber @bind-Value="Company.CompanyNumber" class="form-control" />
+            <ValidationMessage For="@(() => Company.CompanyNumber)" />
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label>Company Address: </label>
+        <div>
+            <InputText @bind-Value="Company.CompanyAddress" class="form-control" />
+            <ValidationMessage For="@(() => Company.CompanyAddress)" />
+        </div>
+    </div>
+
+
+
+    <button type="submit" class="btn btn-success btn-block">
+        Create Company
+    </button>
+    <BackToList Target="Companies" />
+</EditForm>
+
+@code {
+
+    Company Company = new Company();
+
+
+
+    private async Task CreateCompany()
+    {
+        await _client.PostAsJsonAsync(Endpoints.CompaniesEndpoint, Company);
+        _navManager.NavigateTo("/Companies/");
+    }
+}
+
+

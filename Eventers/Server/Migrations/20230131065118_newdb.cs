@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Eventers.Server.Migrations
 {
-    public partial class newDB : Migration
+    public partial class newdb : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -299,7 +299,7 @@ namespace Eventers.Server.Migrations
                     CardNumber = table.Column<int>(type: "int", nullable: false),
                     CVC = table.Column<int>(type: "int", nullable: false),
                     EventeeId = table.Column<int>(type: "int", nullable: false),
-                    EventerID = table.Column<int>(type: "int", nullable: false),
+                    EventerId = table.Column<int>(type: "int", nullable: false),
                     DateCreated = table.Column<DateTime>(type: "datetime2", nullable: false),
                     DateUpdated = table.Column<DateTime>(type: "datetime2", nullable: false),
                     CreatedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
@@ -315,8 +315,8 @@ namespace Eventers.Server.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_Payments_EVENTERS_EventerID",
-                        column: x => x.EventerID,
+                        name: "FK_Payments_EVENTERS_EventerId",
+                        column: x => x.EventerId,
                         principalTable: "EVENTERS",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
@@ -327,8 +327,8 @@ namespace Eventers.Server.Migrations
                 columns: new[] { "Id", "CompanyAddress", "CompanyEmail", "CompanyName", "CompanyNumber", "CreatedBy", "DateCreated", "DateUpdated", "UpdatedBy" },
                 values: new object[,]
                 {
-                    { 1, "1 One-north Cres, Singapore 138538", "Razer@gmail.com", "Razer", 65052188, "System", new DateTime(2023, 1, 31, 0, 28, 38, 291, DateTimeKind.Local).AddTicks(6515), new DateTime(2023, 1, 31, 0, 28, 38, 291, DateTimeKind.Local).AddTicks(6522), "System" },
-                    { 2, "Sim Lim Square, #02-21 Rochor Canal Rd, 188504", "Xtreme@gmail.com", "Xtreme Solution Pte Ltd", 63389566, "System", new DateTime(2023, 1, 31, 0, 28, 38, 291, DateTimeKind.Local).AddTicks(7464), new DateTime(2023, 1, 31, 0, 28, 38, 291, DateTimeKind.Local).AddTicks(7468), "System" }
+                    { 1, "1 One-north Cres, Singapore 138538", "Razer@gmail.com", "Razer", 65052188, "System", new DateTime(2023, 1, 31, 14, 51, 18, 437, DateTimeKind.Local).AddTicks(732), new DateTime(2023, 1, 31, 14, 51, 18, 437, DateTimeKind.Local).AddTicks(741), "System" },
+                    { 2, "Sim Lim Square, #02-21 Rochor Canal Rd, 188504", "Xtreme@gmail.com", "Xtreme Solution Pte Ltd", 63389566, "System", new DateTime(2023, 1, 31, 14, 51, 18, 437, DateTimeKind.Local).AddTicks(1541), new DateTime(2023, 1, 31, 14, 51, 18, 437, DateTimeKind.Local).AddTicks(1546), "System" }
                 });
 
             migrationBuilder.InsertData(
@@ -336,8 +336,8 @@ namespace Eventers.Server.Migrations
                 columns: new[] { "Id", "Address", "ContactNumber", "CreatedBy", "DateCreated", "DateOfBirth", "DateUpdated", "Email", "Gender", "NRIC", "Name", "UpdatedBy" },
                 values: new object[,]
                 {
-                    { 1, "Jurong East", 86118499, "System", new DateTime(2023, 1, 31, 0, 28, 38, 289, DateTimeKind.Local).AddTicks(1799), 2002, new DateTime(2023, 1, 31, 0, 28, 38, 290, DateTimeKind.Local).AddTicks(2010), "njx2002@gmail.com", "Male", 53, "Benson", "System" },
-                    { 2, "Jurong West", 96731728, "System", new DateTime(2023, 1, 31, 0, 28, 38, 290, DateTimeKind.Local).AddTicks(4474), 1865, new DateTime(2023, 1, 31, 0, 28, 38, 290, DateTimeKind.Local).AddTicks(4480), "jeffng@gmail.com", "Female", 193, "Jeff", "System" }
+                    { 1, "Jurong East", 86118499, "System", new DateTime(2023, 1, 31, 14, 51, 18, 434, DateTimeKind.Local).AddTicks(9721), 2002, new DateTime(2023, 1, 31, 14, 51, 18, 435, DateTimeKind.Local).AddTicks(8675), "njx2002@gmail.com", "Male", 53, "Benson", "System" },
+                    { 2, "Jurong West", 96731728, "System", new DateTime(2023, 1, 31, 14, 51, 18, 436, DateTimeKind.Local).AddTicks(502), 1865, new DateTime(2023, 1, 31, 14, 51, 18, 436, DateTimeKind.Local).AddTicks(510), "jeffng@gmail.com", "Female", 193, "Jeff", "System" }
                 });
 
             migrationBuilder.InsertData(
@@ -345,8 +345,8 @@ namespace Eventers.Server.Migrations
                 columns: new[] { "Id", "CreatedBy", "DateCreated", "DateUpdated", "StaffEmail", "StaffName", "StaffNumber", "UpdatedBy" },
                 values: new object[,]
                 {
-                    { 1, "System", new DateTime(2023, 1, 31, 0, 28, 38, 292, DateTimeKind.Local).AddTicks(291), new DateTime(2023, 1, 31, 0, 28, 38, 292, DateTimeKind.Local).AddTicks(297), "Alaster@gmail.com", "Alaster", 86843757, "System" },
-                    { 2, "System", new DateTime(2023, 1, 31, 0, 28, 38, 292, DateTimeKind.Local).AddTicks(1005), new DateTime(2023, 1, 31, 0, 28, 38, 292, DateTimeKind.Local).AddTicks(1009), "AnselSoh@gmail.com", "Ansel Soh", 93768486, "System" }
+                    { 1, "System", new DateTime(2023, 1, 31, 14, 51, 18, 437, DateTimeKind.Local).AddTicks(3906), new DateTime(2023, 1, 31, 14, 51, 18, 437, DateTimeKind.Local).AddTicks(3913), "Alaster@gmail.com", "Alaster", 86843757, "System" },
+                    { 2, "System", new DateTime(2023, 1, 31, 14, 51, 18, 437, DateTimeKind.Local).AddTicks(4560), new DateTime(2023, 1, 31, 14, 51, 18, 437, DateTimeKind.Local).AddTicks(4564), "AnselSoh@gmail.com", "Ansel Soh", 93768486, "System" }
                 });
 
             migrationBuilder.CreateIndex(
@@ -415,9 +415,9 @@ namespace Eventers.Server.Migrations
                 column: "EventeeId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Payments_EventerID",
+                name: "IX_Payments_EventerId",
                 table: "Payments",
-                column: "EventerID");
+                column: "EventerId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_PersistedGrants_Expiration",

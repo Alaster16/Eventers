@@ -1,6 +1,7 @@
 ﻿@page "/Eventers/create"
 @inject HttpClient _client
 @inject NavigationManager _navManager
+@using Eventers.Client.Component
 
 <h3 class="card-title">Create New Event</h3>
 <hr />
@@ -80,7 +81,7 @@
     <button type="submit" class="btn btn-success btn-block">
         Create Event
     </button>
-
+    <BackToList Target="Payments" />
 </EditForm>
 
 @code {

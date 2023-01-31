@@ -16,3 +16,4 @@ namespace Eventers.Shared.Domain
 
     }
 }
+

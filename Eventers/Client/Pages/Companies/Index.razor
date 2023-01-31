@@ -3,7 +3,11 @@
 @inject IJSRuntime js
 @attribute [Authorize]
 
+<a href="/Companies/create" class="btn btn-secondary">
 
+    <span class="oi oi-plus"></span>
+    Submit Company Particulars
+</a>
 <h3 class="card-title">Company Name</h3>
 @if (Companies == null)
 {

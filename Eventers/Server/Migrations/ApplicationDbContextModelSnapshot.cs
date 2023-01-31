@@ -134,8 +134,8 @@ namespace Eventers.Server.Migrations
                             CompanyName = "Razer",
                             CompanyNumber = 65052188,
                             CreatedBy = "System",
-                            DateCreated = new DateTime(2023, 1, 31, 0, 41, 8, 169, DateTimeKind.Local).AddTicks(2842),
-                            DateUpdated = new DateTime(2023, 1, 31, 0, 41, 8, 169, DateTimeKind.Local).AddTicks(2850),
+                            DateCreated = new DateTime(2023, 1, 31, 14, 51, 18, 437, DateTimeKind.Local).AddTicks(732),
+                            DateUpdated = new DateTime(2023, 1, 31, 14, 51, 18, 437, DateTimeKind.Local).AddTicks(741),
                             UpdatedBy = "System"
                         },
                         new
@@ -146,8 +146,8 @@ namespace Eventers.Server.Migrations
                             CompanyName = "Xtreme Solution Pte Ltd",
                             CompanyNumber = 63389566,
                             CreatedBy = "System",
-                            DateCreated = new DateTime(2023, 1, 31, 0, 41, 8, 169, DateTimeKind.Local).AddTicks(3784),
-                            DateUpdated = new DateTime(2023, 1, 31, 0, 41, 8, 169, DateTimeKind.Local).AddTicks(3788),
+                            DateCreated = new DateTime(2023, 1, 31, 14, 51, 18, 437, DateTimeKind.Local).AddTicks(1541),
+                            DateUpdated = new DateTime(2023, 1, 31, 14, 51, 18, 437, DateTimeKind.Local).AddTicks(1546),
                             UpdatedBy = "System"
                         });
                 });
@@ -249,9 +249,9 @@ namespace Eventers.Server.Migrations
                             Address = "Jurong East",
                             ContactNumber = 86118499,
                             CreatedBy = "System",
-                            DateCreated = new DateTime(2023, 1, 31, 0, 41, 8, 166, DateTimeKind.Local).AddTicks(9411),
+                            DateCreated = new DateTime(2023, 1, 31, 14, 51, 18, 434, DateTimeKind.Local).AddTicks(9721),
                             DateOfBirth = 2002,
-                            DateUpdated = new DateTime(2023, 1, 31, 0, 41, 8, 167, DateTimeKind.Local).AddTicks(9107),
+                            DateUpdated = new DateTime(2023, 1, 31, 14, 51, 18, 435, DateTimeKind.Local).AddTicks(8675),
                             Email = "njx2002@gmail.com",
                             Gender = "Male",
                             NRIC = 53,
@@ -264,9 +264,9 @@ namespace Eventers.Server.Migrations
                             Address = "Jurong West",
                             ContactNumber = 96731728,
                             CreatedBy = "System",
-                            DateCreated = new DateTime(2023, 1, 31, 0, 41, 8, 168, DateTimeKind.Local).AddTicks(1304),
+                            DateCreated = new DateTime(2023, 1, 31, 14, 51, 18, 436, DateTimeKind.Local).AddTicks(502),
                             DateOfBirth = 1865,
-                            DateUpdated = new DateTime(2023, 1, 31, 0, 41, 8, 168, DateTimeKind.Local).AddTicks(1310),
+                            DateUpdated = new DateTime(2023, 1, 31, 14, 51, 18, 436, DateTimeKind.Local).AddTicks(510),
                             Email = "jeffng@gmail.com",
                             Gender = "Female",
                             NRIC = 193,
@@ -300,7 +300,7 @@ namespace Eventers.Server.Migrations
                     b.Property<int>("EventeeId")
                         .HasColumnType("int");
 
-                    b.Property<int>("EventerID")
+                    b.Property<int>("EventerId")
                         .HasColumnType("int");
 
                     b.Property<string>("PaymentMethod")
@@ -313,7 +313,7 @@ namespace Eventers.Server.Migrations
 
                     b.HasIndex("EventeeId");
 
-                    b.HasIndex("EventerID");
+                    b.HasIndex("EventerId");
 
                     b.ToTable("Payments");
                 });
@@ -355,8 +355,8 @@ namespace Eventers.Server.Migrations
                         {
                             Id = 1,
                             CreatedBy = "System",
-                            DateCreated = new DateTime(2023, 1, 31, 0, 41, 8, 169, DateTimeKind.Local).AddTicks(6445),
-                            DateUpdated = new DateTime(2023, 1, 31, 0, 41, 8, 169, DateTimeKind.Local).AddTicks(6452),
+                            DateCreated = new DateTime(2023, 1, 31, 14, 51, 18, 437, DateTimeKind.Local).AddTicks(3906),
+                            DateUpdated = new DateTime(2023, 1, 31, 14, 51, 18, 437, DateTimeKind.Local).AddTicks(3913),
                             StaffEmail = "Alaster@gmail.com",
                             StaffName = "Alaster",
                             StaffNumber = 86843757,
@@ -366,8 +366,8 @@ namespace Eventers.Server.Migrations
                         {
                             Id = 2,
                             CreatedBy = "System",
-                            DateCreated = new DateTime(2023, 1, 31, 0, 41, 8, 169, DateTimeKind.Local).AddTicks(7139),
-                            DateUpdated = new DateTime(2023, 1, 31, 0, 41, 8, 169, DateTimeKind.Local).AddTicks(7143),
+                            DateCreated = new DateTime(2023, 1, 31, 14, 51, 18, 437, DateTimeKind.Local).AddTicks(4560),
+                            DateUpdated = new DateTime(2023, 1, 31, 14, 51, 18, 437, DateTimeKind.Local).AddTicks(4564),
                             StaffEmail = "AnselSoh@gmail.com",
                             StaffName = "Ansel Soh",
                             StaffNumber = 93768486,
@@ -642,7 +642,7 @@ namespace Eventers.Server.Migrations
 
                     b.HasOne("Eventers.Shared.Domain.EVENTER", "EVENTER")
                         .WithMany()
-                        .HasForeignKey("EventerID")
+                        .HasForeignKey("EventerId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 

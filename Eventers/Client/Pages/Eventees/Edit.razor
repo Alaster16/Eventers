@@ -1,0 +1,22 @@
+﻿@page "/Eventees/edit/{id:int}"
+@inject HttpClient _client
+@inject NavigationManager _navManager
+<h3 class="card-title">Edit Event</h3>
+
+<FormComponent ButtonText="Update" OnValidSubmit="EditEventee" Eventee="Eventee" />
+
+@code {
+    [Parameter] public int Id { get; set; }
+    Eventee Eventee = new Eventee();
+
+    protected async override Task OnParametersSetAsync()
+    {
+        Eventee = await _client.GetFromJsonAsync<Eventee>($"{Endpoints.EventeesEndpoint}/{Id}");
+    }
+
+    async Task EditEventee()
+    {
+        await _client.PutAsJsonAsync($"{Endpoints.EventeesEndpoint}/{Id}", Eventee);
+        _navManager.NavigateTo("/Eventees/");
+    }
+}
