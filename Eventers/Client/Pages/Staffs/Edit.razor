@@ -1,0 +1,22 @@
+﻿@page "/staffs/edit/{id:int}"
+@inject HttpClient _client
+@inject NavigationManager _navManager
+<h3 class="card-title">Edit Payment</h3>
+
+<FormComponent ButtonText="Update" OnValidSubmit="EditStaff" Staff="Staff" />
+
+@code {
+    [Parameter] public int Id { get; set; }
+    Staff Staff = new Staff();
+
+    protected async override Task OnParametersSetAsync()
+    {
+        Staff = await _client.GetFromJsonAsync<Staff>($"{Endpoints.StaffsEndpoint}/{Id}");
+    }
+
+    async Task EditStaff()
+    {
+        await _client.PutAsJsonAsync($"{Endpoints.StaffsEndpoint}/{Id}", Staff);
+        _navManager.NavigateTo("/staffs/");
+    }
+}
