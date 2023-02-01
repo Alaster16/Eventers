@@ -32,8 +32,8 @@ namespace Eventers.Server.Controllers
         public async Task<IActionResult> GetStaffs()
         {
             //return await _context.Staffs.ToListAsync();
-            var Staffs = await _unitOfWork.Staffs.GetAll();
-            return Ok(Staffs);
+            var staff = await _unitOfWork.Staffs.GetAll();
+            return Ok(staff);
         }
 
         // GET: api/Staffs/5
@@ -42,28 +42,28 @@ namespace Eventers.Server.Controllers
         public async Task<IActionResult> GetStaff(int id)
         {
             //var Staff = await _context.Staffs.FindAsync(id);
-            var Staff = await _unitOfWork.Staffs.Get(q => q.Id == id);
+            var staff = await _unitOfWork.Staffs.Get(q => q.Id == id);
 
-            if (Staff == null)
+            if (staff == null)
             {
                 return NotFound();
             }
 
-            return Ok(Staff);
+            return Ok(staff);
         }
 
         // PUT: api/Staffs/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutStaff(int id, Staff Staff)
+        public async Task<IActionResult> PutStaff(int id, Staff staff)
         {
-            if (id != Staff.Id)
+            if (id != staff.Id)
             {
                 return BadRequest();
             }
 
             //_context.Entry(Staff).State = EntityState.Modified;
-            _unitOfWork.Staffs.Update(Staff);
+            _unitOfWork.Staffs.Update(staff);
 
             try
             {
@@ -89,14 +89,14 @@ namespace Eventers.Server.Controllers
         // POST: api/Staffs
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<ActionResult<Staff>> PostStaff(Staff Staff)
+        public async Task<ActionResult<Staff>> PostStaff(Staff staff)
         {
             //_context.Staffs.Add(Staff);
             //await _context.SaveChangesAsync();
-            await _unitOfWork.Staffs.Insert(Staff);
+            await _unitOfWork.Staffs.Insert(staff);
             await _unitOfWork.Save(HttpContext);
 
-            return CreatedAtAction("GetStaff", new { id = Staff.Id }, Staff);
+            return CreatedAtAction("GetStaff", new { id = staff.Id }, staff);
         }
 
         // DELETE: api/Staffs/5
@@ -104,8 +104,8 @@ namespace Eventers.Server.Controllers
         public async Task<IActionResult> DeleteStaff(int id)
         {
             //var Staff = await _context.Staffs.FindAsync(id);
-            var Staff = await _unitOfWork.Staffs.Get(q => q.Id == id);
-            if (Staff == null)
+            var staff = await _unitOfWork.Staffs.Get(q => q.Id == id);
+            if (staff == null)
             {
                 return NotFound();
             }
@@ -122,8 +122,8 @@ namespace Eventers.Server.Controllers
         private async Task<bool> StaffExists(int id)
         {
             //return _context.Staffs.Any(e => e.Id == id);
-            var Staff = await _unitOfWork.Staffs.Get(q => q.Id == id);
-            return Staff != null;
+            var staff = await _unitOfWork.Staffs.Get(q => q.Id == id);
+            return staff != null;
         }
     }
 }

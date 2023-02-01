@@ -74,11 +74,7 @@ namespace Eventers.Server.Repository
             await _db.AddAsync(entity);
         }
 
-        public Task Insert(Staff staff)
-        {
-            throw new NotImplementedException();
-        }
-
+   
         public async Task InsertRange(IEnumerable<T> entities)
         {
             await _db.AddRangeAsync(entities);

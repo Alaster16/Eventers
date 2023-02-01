@@ -1,4 +1,4 @@
-﻿@page "/Companies/edit/{id:int}"
+﻿@page "/companies/edit/{id:int}"
 @inject HttpClient _client
 @inject NavigationManager _navManager
 <h3 class="card-title">Edit Companies</h3>
@@ -17,7 +17,7 @@
     async Task EditCompany()
     {
         await _client.PutAsJsonAsync($"{Endpoints.CompaniesEndpoint}/{Id}", Company);
-        _navManager.NavigateTo("/Companies/");
+        _navManager.NavigateTo("/companies/");
     }
 }
 
