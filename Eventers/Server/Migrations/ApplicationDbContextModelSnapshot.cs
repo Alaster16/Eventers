@@ -98,13 +98,18 @@ namespace Eventers.Server.Migrations
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("CompanyAddress")
-                        .HasColumnType("nvarchar(max)");
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
 
                     b.Property<string>("CompanyEmail")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("CompanyName")
-                        .HasColumnType("nvarchar(max)");
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
 
                     b.Property<int>("CompanyNumber")
                         .HasColumnType("int");
@@ -134,8 +139,8 @@ namespace Eventers.Server.Migrations
                             CompanyName = "Razer",
                             CompanyNumber = 65052188,
                             CreatedBy = "System",
-                            DateCreated = new DateTime(2023, 2, 2, 14, 42, 55, 416, DateTimeKind.Local).AddTicks(9221),
-                            DateUpdated = new DateTime(2023, 2, 2, 14, 42, 55, 416, DateTimeKind.Local).AddTicks(9227),
+                            DateCreated = new DateTime(2023, 2, 2, 14, 56, 3, 771, DateTimeKind.Local).AddTicks(9743),
+                            DateUpdated = new DateTime(2023, 2, 2, 14, 56, 3, 771, DateTimeKind.Local).AddTicks(9749),
                             UpdatedBy = "System"
                         },
                         new
@@ -146,8 +151,8 @@ namespace Eventers.Server.Migrations
                             CompanyName = "Xtreme Solution Pte Ltd",
                             CompanyNumber = 63389566,
                             CreatedBy = "System",
-                            DateCreated = new DateTime(2023, 2, 2, 14, 42, 55, 416, DateTimeKind.Local).AddTicks(9994),
-                            DateUpdated = new DateTime(2023, 2, 2, 14, 42, 55, 416, DateTimeKind.Local).AddTicks(9998),
+                            DateCreated = new DateTime(2023, 2, 2, 14, 56, 3, 772, DateTimeKind.Local).AddTicks(536),
+                            DateUpdated = new DateTime(2023, 2, 2, 14, 56, 3, 772, DateTimeKind.Local).AddTicks(539),
                             UpdatedBy = "System"
                         });
                 });
@@ -261,9 +266,9 @@ namespace Eventers.Server.Migrations
                             Address = "Jurong East",
                             ContactNumber = 86118499,
                             CreatedBy = "System",
-                            DateCreated = new DateTime(2023, 2, 2, 14, 42, 55, 414, DateTimeKind.Local).AddTicks(9628),
+                            DateCreated = new DateTime(2023, 2, 2, 14, 56, 3, 770, DateTimeKind.Local).AddTicks(675),
                             DateOfBirth = 2002,
-                            DateUpdated = new DateTime(2023, 2, 2, 14, 42, 55, 415, DateTimeKind.Local).AddTicks(8058),
+                            DateUpdated = new DateTime(2023, 2, 2, 14, 56, 3, 770, DateTimeKind.Local).AddTicks(8481),
                             Email = "njx2002@gmail.com",
                             Gender = "Male",
                             NRIC = "T4758394K",
@@ -276,9 +281,9 @@ namespace Eventers.Server.Migrations
                             Address = "Jurong West",
                             ContactNumber = 96731728,
                             CreatedBy = "System",
-                            DateCreated = new DateTime(2023, 2, 2, 14, 42, 55, 415, DateTimeKind.Local).AddTicks(9805),
+                            DateCreated = new DateTime(2023, 2, 2, 14, 56, 3, 771, DateTimeKind.Local).AddTicks(315),
                             DateOfBirth = 1865,
-                            DateUpdated = new DateTime(2023, 2, 2, 14, 42, 55, 415, DateTimeKind.Local).AddTicks(9809),
+                            DateUpdated = new DateTime(2023, 2, 2, 14, 56, 3, 771, DateTimeKind.Local).AddTicks(320),
                             Email = "jeffng@gmail.com",
                             Gender = "Female",
                             NRIC = "T26485694H",
@@ -353,10 +358,13 @@ namespace Eventers.Server.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<string>("StaffEmail")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("StaffName")
-                        .HasColumnType("nvarchar(max)");
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
 
                     b.Property<int>("StaffNumber")
                         .HasColumnType("int");
@@ -373,8 +381,8 @@ namespace Eventers.Server.Migrations
                         {
                             Id = 1,
                             CreatedBy = "System",
-                            DateCreated = new DateTime(2023, 2, 2, 14, 42, 55, 417, DateTimeKind.Local).AddTicks(2365),
-                            DateUpdated = new DateTime(2023, 2, 2, 14, 42, 55, 417, DateTimeKind.Local).AddTicks(2371),
+                            DateCreated = new DateTime(2023, 2, 2, 14, 56, 3, 772, DateTimeKind.Local).AddTicks(2883),
+                            DateUpdated = new DateTime(2023, 2, 2, 14, 56, 3, 772, DateTimeKind.Local).AddTicks(2888),
                             StaffEmail = "Alaster@gmail.com",
                             StaffName = "Alaster",
                             StaffNumber = 86843757,
@@ -384,8 +392,8 @@ namespace Eventers.Server.Migrations
                         {
                             Id = 2,
                             CreatedBy = "System",
-                            DateCreated = new DateTime(2023, 2, 2, 14, 42, 55, 417, DateTimeKind.Local).AddTicks(2931),
-                            DateUpdated = new DateTime(2023, 2, 2, 14, 42, 55, 417, DateTimeKind.Local).AddTicks(2935),
+                            DateCreated = new DateTime(2023, 2, 2, 14, 56, 3, 772, DateTimeKind.Local).AddTicks(3529),
+                            DateUpdated = new DateTime(2023, 2, 2, 14, 56, 3, 772, DateTimeKind.Local).AddTicks(3532),
                             StaffEmail = "AnselSoh@gmail.com",
                             StaffName = "Ansel Soh",
                             StaffNumber = 93768486,

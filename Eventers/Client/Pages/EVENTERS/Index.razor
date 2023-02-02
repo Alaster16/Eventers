@@ -2,7 +2,7 @@
 @inject HttpClient _client
 @inject IJSRuntime js
 @attribute [Authorize]
-
+@implements IDisposable
 
 <h3 class="card-title">Eventers</h3>
 <br />
@@ -12,14 +12,13 @@
 </a>
 <br />
 <br />
-
 @if (Eventers == null)
 {
     <div class="alert alert-info">Loading Eventers...</div>
 }
 else
 {
-    <table class="table table-responsive">
+    <table class="table table-responsive" id="eventersTable">
         <thead>
             <tr>
                 <th>Title</th>
@@ -35,26 +34,26 @@ else
         <tbody>
             @foreach (var eventer in Eventers)
             {
-            <tr>
-                <td>@eventer.Title</td>
-                <td>@eventer.Location</td>
-                <td>@eventer.Date</td>
-                <td>@eventer.TicketPrice</td>
-                <td>@eventer.Company.CompanyName</td>
-                <td>@eventer.Staff.StaffName</td>
-                <td>
-                    <a href="/Eventers/view/@eventer.Id" class="btn btn-primary">
-                        <span class="oi oi-book"></span>
-                    </a>
-                    <a href="/Eventers/edit/@eventer.Id" class="btn btn-warning">
-                        <span class="oi oi-pencil"></span>
-                    </a>
-                    <button class="btn btn-danger" @onclick="@(()=>Delete(eventer.Id))">
-                        <span class="oi oi-delete"></span>
-                    </button>
+                <tr>
+                    <td>@eventer.Title</td>
+                    <td>@eventer.Location</td>
+                    <td>@eventer.Date</td>
+                    <td>@eventer.TicketPrice</td>
+                    <td>@eventer.Company.CompanyName</td>
+                    <td>@eventer.Staff.StaffName</td>
+                    <td>
+                        <a href="/Eventers/view/@eventer.Id" class="btn btn-primary">
+                            <span class="oi oi-book"></span>
+                        </a>
+                        <a href="/Eventers/edit/@eventer.Id" class="btn btn-warning">
+                            <span class="oi oi-pencil"></span>
+                        </a>
+                        <button class="btn btn-danger" @onclick="@(()=>Delete(eventer.Id))">
+                            <span class="oi oi-delete"></span>
+                        </button>
 
-                </td>
-            </tr>
+                    </td>
+                </tr>
             }
         </tbody>
     </table>
@@ -79,10 +78,16 @@ else
             await _client.DeleteAsync($"{Endpoints.EventersEndpoint}/{eventerId}");
             await OnInitializedAsync();
         }
-
-
     }
 
+    protected async override Task OnAfterRenderAsync(bool firstRender)
+    {
+        await js.InvokeVoidAsync("AddDataTable", "#eventersTable");
+    }
 
+    public void Dispose()
+    {
+        js.InvokeVoidAsync("DataTablesDispose", "#eventersTable");
+    }
 
 }

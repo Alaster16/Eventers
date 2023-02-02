@@ -2,20 +2,24 @@
 @inject HttpClient _client
 @inject IJSRuntime js
 @attribute [Authorize]
+@implements IDisposable
 
+<h3 class="card-title">Company Name</h3>
+<br />
 <a href="/Companies/create" class="btn btn-secondary">
-
     <span class="oi oi-plus"></span>
     Submit Company Particulars
 </a>
-<h3 class="card-title">Company Name</h3>
+<br />
+<br />
 @if (Companies == null)
 {
     <div class="alert alert-info">Loading Companies...</div>
 }
 else
 {
-    <table class="table table-responsive">
+    <table class="table table-responsive" id="companiesTable">
+        >
         <thead>
             <tr>
                 <th>Company Name</th>
@@ -30,25 +34,25 @@ else
         <tbody>
             @foreach (var company in Companies)
             {
-            <tr>
-                <td>@company.CompanyName</td>
-                <td>@company.CompanyEmail</td>
-                <td>@company.CompanyAddress</td>
-                <td>@company.CompanyNumber</td>
+                <tr>
+                    <td>@company.CompanyName</td>
+                    <td>@company.CompanyEmail</td>
+                    <td>@company.CompanyAddress</td>
+                    <td>@company.CompanyNumber</td>
 
 
-                <td>
-                    <a href="/companies/view/@company.Id" class="btn btn-primary">
-                        <span class="oi oi-book"></span>
-                    </a>
-                    <a href="/companies/edit/@company.Id" class="btn btn-warning">
-                        <span class="oi oi-pencil"></span>
-                    </a>
-                    <button class="btn btn-danger" @onclick="@(()=>Delete(company.Id))">
-                        <span class="oi oi-delete"></span>
-                    </button>
-                </td>
-            </tr>
+                    <td>
+                        <a href="/companies/view/@company.Id" class="btn btn-primary">
+                            <span class="oi oi-book"></span>
+                        </a>
+                        <a href="/companies/edit/@company.Id" class="btn btn-warning">
+                            <span class="oi oi-pencil"></span>
+                        </a>
+                        <button class="btn btn-danger" @onclick="@(()=>Delete(company.Id))">
+                            <span class="oi oi-delete"></span>
+                        </button>
+                    </td>
+                </tr>
             }
         </tbody>
     </table>
@@ -74,9 +78,20 @@ else
             await _client.DeleteAsync($"{Endpoints.CompaniesEndpoint}/{companyId}");
             await OnInitializedAsync();
         }
-
-
     }
+
+    protected async override Task OnAfterRenderAsync(bool firstRender)
+    {
+        await js.InvokeVoidAsync("AddDataTable", "#companiesTable");
+    }
+
+    public void Dispose()
+    {
+        js.InvokeVoidAsync("DataTablesDispose", "#companiesTable");
+    }
+
+
+}
 
 
 

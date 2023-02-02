@@ -2,7 +2,7 @@
 @inject HttpClient _client
 @inject IJSRuntime js
 @attribute [Authorize]
-
+@implements IDisposable
 
 <h3 class="card-title">Staff particulars</h3>
 <br />
@@ -18,7 +18,8 @@
 }
 else
 {
-    <table class="table table-responsive">
+    <table class="table table-responsive" id="staffsTable">
+        >
         <thead>
             <tr>
                 <th>Staff Name</th>
@@ -74,11 +75,17 @@ else
         {
             await _client.DeleteAsync($"{Endpoints.StaffsEndpoint}/{StaffId}");
             await OnInitializedAsync();
-            //}
-
-
         }
-
     }
+    protected async override Task OnAfterRenderAsync(bool firstRender)
+    {
+        await js.InvokeVoidAsync("AddDataTable", "#staffsTable");
+    }
+
+    public void Dispose()
+    {
+        js.InvokeVoidAsync("DataTablesDispose", "#staffsTable");
+    }
+}
 
 }

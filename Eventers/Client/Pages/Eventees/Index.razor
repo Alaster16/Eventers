@@ -1,66 +1,70 @@
 ﻿@page "/Eventees/"
-@inject HttpClient _client 
+@inject HttpClient _client
 @inject IJSRuntime js
 @attribute [Authorize]
+@implements IDisposable
 
+<h3 class="card-title">Eventee Name</h3>
+<br />
 <a href="/Eventees/create" class="btn btn-secondary">
-
     <span class="oi oi-plus"></span>
     Create New Eventee
 </a>
-<h3 class="card-title">Eventee Name</h3>
-@if (Eventees==null)
-            {
-                <div class="alert alert-info">Loading Eventees...</div>
+<br />
+<br />
+@if (Eventees == null)
+{
+    <div class="alert alert-info">Loading Eventees...</div>
 }
 else
+{
+    <table class="table table-responsive" id="eventeesTable">
+        >
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Address</th>
+                <th>NRIC</th>
+                <th>DateOfBirth</th>
+                <th>ContactNumber</th>
+                <th>Gender</th>
+                <th>Email</th>
+
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var eventee in Eventees)
             {
-                <table class="table table-responsive">
-                   <thead>
-                       <tr>
-                           <th>Name</th>
-                           <th>Address</th>
-                           <th>NRIC</th>
-                           <th>DateOfBirth</th>
-                           <th>ContactNumber</th>
-                           <th>Gender</th>
-                           <th>Email</th>
+                <tr>
+                    <td>@eventee.Name</td>
+                    <td>@eventee.Address</td>
+                    <td>@eventee.NRIC</td>
+                    <td>@eventee.DateOfBirth</td>
+                    <td>@eventee.ContactNumber</td>
+                    <td>@eventee.Gender</td>
+                    <td>@eventee.Email</td>
 
-                           <th>Actions</th>
-                       </tr>
-                       </thead>
-                    <tbody>
-                        @foreach (var eventee in Eventees)
-                {
-                        <tr>
-                            <td>@eventee.Name</td>
-                            <td>@eventee.Address</td>
-                            <td>@eventee.NRIC</td>
-                            <td>@eventee.DateOfBirth</td>
-                            <td>@eventee.ContactNumber</td>
-                            <td>@eventee.Gender</td>
-                            <td>@eventee.Email</td>
-
-                            <td>
-                                <a href="/eventees/view/@eventee.Id" class="btn btn-primary">
-                                    <span class="oi oi-book"></span>
-                                </a>
-                                <a href="/eventees/edit/@eventee.Id" class="btn btn-warning">
-                                    <span class="oi oi-pencil"></span>
-                                </a>
-                                <button class="btn btn-danger" @onclick="@(()=>Delete(eventee.Id))">
-                                    <span class="oi oi-delete"></span>
-                                </button>
-                            </td>
-                        </tr>
-                }
-                    </tbody>
-                </table>
+                    <td>
+                        <a href="/eventees/view/@eventee.Id" class="btn btn-primary">
+                            <span class="oi oi-book"></span>
+                        </a>
+                        <a href="/eventees/edit/@eventee.Id" class="btn btn-warning">
+                            <span class="oi oi-pencil"></span>
+                        </a>
+                        <button class="btn btn-danger" @onclick="@(()=>Delete(eventee.Id))">
+                            <span class="oi oi-delete"></span>
+                        </button>
+                    </td>
+                </tr>
             }
-<br/>
+        </tbody>
+    </table>
+}
+<br />
 
 @code {
-    private List<Eventee>Eventees;
+    private List<Eventee> Eventees;
 
     protected async override Task OnInitializedAsync()
     {
@@ -72,14 +76,24 @@ else
     {
         var eventee = Eventees.First(q => q.Id == eventeeId);
         var confirm = await js.InvokeAsync<bool>("confirm", $"Do you want to delete {eventee.Name}?");
-        if(confirm)
+        if (confirm)
         {
             await _client.DeleteAsync($"{Endpoints.EventeesEndpoint}/{eventeeId}");
             await OnInitializedAsync();
         }
-
-
     }
+
+    protected async override Task OnAfterRenderAsync(bool firstRender)
+    {
+        await js.InvokeVoidAsync("AddDataTable", "#eventeesTable");
+    }
+
+    public void Dispose()
+    {
+        js.InvokeVoidAsync("DataTablesDispose", "#eventeesTable");
+    }
+
+}
 
 
 

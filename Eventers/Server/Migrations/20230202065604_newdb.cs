@@ -1,9 +1,9 @@
-﻿using Microsoft.EntityFrameworkCore.Migrations;
-using System;
+﻿using System;
+using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Eventers.Server.Migrations
 {
-    public partial class @new : Migration
+    public partial class newdb : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -54,9 +54,9 @@ namespace Eventers.Server.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    CompanyName = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    CompanyEmail = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    CompanyAddress = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    CompanyName = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
+                    CompanyEmail = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    CompanyAddress = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
                     CompanyNumber = table.Column<int>(type: "int", nullable: false),
                     DateCreated = table.Column<DateTime>(type: "datetime2", nullable: false),
                     DateUpdated = table.Column<DateTime>(type: "datetime2", nullable: false),
@@ -136,8 +136,8 @@ namespace Eventers.Server.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    StaffName = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    StaffEmail = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    StaffName = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
+                    StaffEmail = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     StaffNumber = table.Column<int>(type: "int", nullable: false),
                     DateCreated = table.Column<DateTime>(type: "datetime2", nullable: false),
                     DateUpdated = table.Column<DateTime>(type: "datetime2", nullable: false),
@@ -327,8 +327,8 @@ namespace Eventers.Server.Migrations
                 columns: new[] { "Id", "CompanyAddress", "CompanyEmail", "CompanyName", "CompanyNumber", "CreatedBy", "DateCreated", "DateUpdated", "UpdatedBy" },
                 values: new object[,]
                 {
-                    { 1, "1 One-north Cres, Singapore 138538", "Razer@gmail.com", "Razer", 65052188, "System", new DateTime(2023, 2, 2, 14, 42, 55, 416, DateTimeKind.Local).AddTicks(9221), new DateTime(2023, 2, 2, 14, 42, 55, 416, DateTimeKind.Local).AddTicks(9227), "System" },
-                    { 2, "Sim Lim Square, #02-21 Rochor Canal Rd, 188504", "Xtreme@gmail.com", "Xtreme Solution Pte Ltd", 63389566, "System", new DateTime(2023, 2, 2, 14, 42, 55, 416, DateTimeKind.Local).AddTicks(9994), new DateTime(2023, 2, 2, 14, 42, 55, 416, DateTimeKind.Local).AddTicks(9998), "System" }
+                    { 1, "1 One-north Cres, Singapore 138538", "Razer@gmail.com", "Razer", 65052188, "System", new DateTime(2023, 2, 2, 14, 56, 3, 771, DateTimeKind.Local).AddTicks(9743), new DateTime(2023, 2, 2, 14, 56, 3, 771, DateTimeKind.Local).AddTicks(9749), "System" },
+                    { 2, "Sim Lim Square, #02-21 Rochor Canal Rd, 188504", "Xtreme@gmail.com", "Xtreme Solution Pte Ltd", 63389566, "System", new DateTime(2023, 2, 2, 14, 56, 3, 772, DateTimeKind.Local).AddTicks(536), new DateTime(2023, 2, 2, 14, 56, 3, 772, DateTimeKind.Local).AddTicks(539), "System" }
                 });
 
             migrationBuilder.InsertData(
@@ -336,8 +336,8 @@ namespace Eventers.Server.Migrations
                 columns: new[] { "Id", "Address", "ContactNumber", "CreatedBy", "DateCreated", "DateOfBirth", "DateUpdated", "Email", "Gender", "NRIC", "Name", "UpdatedBy" },
                 values: new object[,]
                 {
-                    { 1, "Jurong East", 86118499, "System", new DateTime(2023, 2, 2, 14, 42, 55, 414, DateTimeKind.Local).AddTicks(9628), 2002, new DateTime(2023, 2, 2, 14, 42, 55, 415, DateTimeKind.Local).AddTicks(8058), "njx2002@gmail.com", "Male", "T4758394K", "Benson", "System" },
-                    { 2, "Jurong West", 96731728, "System", new DateTime(2023, 2, 2, 14, 42, 55, 415, DateTimeKind.Local).AddTicks(9805), 1865, new DateTime(2023, 2, 2, 14, 42, 55, 415, DateTimeKind.Local).AddTicks(9809), "jeffng@gmail.com", "Female", "T26485694H", "Jeff", "System" }
+                    { 1, "Jurong East", 86118499, "System", new DateTime(2023, 2, 2, 14, 56, 3, 770, DateTimeKind.Local).AddTicks(675), 2002, new DateTime(2023, 2, 2, 14, 56, 3, 770, DateTimeKind.Local).AddTicks(8481), "njx2002@gmail.com", "Male", "T4758394K", "Benson", "System" },
+                    { 2, "Jurong West", 96731728, "System", new DateTime(2023, 2, 2, 14, 56, 3, 771, DateTimeKind.Local).AddTicks(315), 1865, new DateTime(2023, 2, 2, 14, 56, 3, 771, DateTimeKind.Local).AddTicks(320), "jeffng@gmail.com", "Female", "T26485694H", "Jeff", "System" }
                 });
 
             migrationBuilder.InsertData(
@@ -345,8 +345,8 @@ namespace Eventers.Server.Migrations
                 columns: new[] { "Id", "CreatedBy", "DateCreated", "DateUpdated", "StaffEmail", "StaffName", "StaffNumber", "UpdatedBy" },
                 values: new object[,]
                 {
-                    { 1, "System", new DateTime(2023, 2, 2, 14, 42, 55, 417, DateTimeKind.Local).AddTicks(2365), new DateTime(2023, 2, 2, 14, 42, 55, 417, DateTimeKind.Local).AddTicks(2371), "Alaster@gmail.com", "Alaster", 86843757, "System" },
-                    { 2, "System", new DateTime(2023, 2, 2, 14, 42, 55, 417, DateTimeKind.Local).AddTicks(2931), new DateTime(2023, 2, 2, 14, 42, 55, 417, DateTimeKind.Local).AddTicks(2935), "AnselSoh@gmail.com", "Ansel Soh", 93768486, "System" }
+                    { 1, "System", new DateTime(2023, 2, 2, 14, 56, 3, 772, DateTimeKind.Local).AddTicks(2883), new DateTime(2023, 2, 2, 14, 56, 3, 772, DateTimeKind.Local).AddTicks(2888), "Alaster@gmail.com", "Alaster", 86843757, "System" },
+                    { 2, "System", new DateTime(2023, 2, 2, 14, 56, 3, 772, DateTimeKind.Local).AddTicks(3529), new DateTime(2023, 2, 2, 14, 56, 3, 772, DateTimeKind.Local).AddTicks(3532), "AnselSoh@gmail.com", "Ansel Soh", 93768486, "System" }
                 });
 
             migrationBuilder.CreateIndex(
