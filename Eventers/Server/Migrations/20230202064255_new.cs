@@ -1,9 +1,9 @@
-﻿using System;
-using Microsoft.EntityFrameworkCore.Migrations;
+﻿using Microsoft.EntityFrameworkCore.Migrations;
+using System;
 
 namespace Eventers.Server.Migrations
 {
-    public partial class newdb : Migration
+    public partial class @new : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -93,13 +93,13 @@ namespace Eventers.Server.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Address = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    NRIC = table.Column<int>(type: "int", nullable: false),
+                    Name = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
+                    Address = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
+                    NRIC = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     DateOfBirth = table.Column<int>(type: "int", nullable: false),
                     ContactNumber = table.Column<int>(type: "int", nullable: false),
-                    Gender = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Email = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Gender = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
+                    Email = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     DateCreated = table.Column<DateTime>(type: "datetime2", nullable: false),
                     DateUpdated = table.Column<DateTime>(type: "datetime2", nullable: false),
                     CreatedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
@@ -261,8 +261,8 @@ namespace Eventers.Server.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Title = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Location = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Title = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
+                    Location = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
                     Date = table.Column<DateTime>(type: "datetime2", nullable: false),
                     TicketPrice = table.Column<int>(type: "int", nullable: false),
                     CompanyId = table.Column<int>(type: "int", nullable: false),
@@ -295,9 +295,9 @@ namespace Eventers.Server.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    PaymentMethod = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    CardNumber = table.Column<int>(type: "int", nullable: false),
-                    CVC = table.Column<int>(type: "int", nullable: false),
+                    PaymentMethod = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
+                    CardNumber = table.Column<string>(type: "nvarchar(16)", maxLength: 16, nullable: false),
+                    CVC = table.Column<string>(type: "nvarchar(3)", maxLength: 3, nullable: false),
                     EventeeId = table.Column<int>(type: "int", nullable: false),
                     EventerId = table.Column<int>(type: "int", nullable: false),
                     DateCreated = table.Column<DateTime>(type: "datetime2", nullable: false),
@@ -327,8 +327,8 @@ namespace Eventers.Server.Migrations
                 columns: new[] { "Id", "CompanyAddress", "CompanyEmail", "CompanyName", "CompanyNumber", "CreatedBy", "DateCreated", "DateUpdated", "UpdatedBy" },
                 values: new object[,]
                 {
-                    { 1, "1 One-north Cres, Singapore 138538", "Razer@gmail.com", "Razer", 65052188, "System", new DateTime(2023, 1, 31, 14, 51, 18, 437, DateTimeKind.Local).AddTicks(732), new DateTime(2023, 1, 31, 14, 51, 18, 437, DateTimeKind.Local).AddTicks(741), "System" },
-                    { 2, "Sim Lim Square, #02-21 Rochor Canal Rd, 188504", "Xtreme@gmail.com", "Xtreme Solution Pte Ltd", 63389566, "System", new DateTime(2023, 1, 31, 14, 51, 18, 437, DateTimeKind.Local).AddTicks(1541), new DateTime(2023, 1, 31, 14, 51, 18, 437, DateTimeKind.Local).AddTicks(1546), "System" }
+                    { 1, "1 One-north Cres, Singapore 138538", "Razer@gmail.com", "Razer", 65052188, "System", new DateTime(2023, 2, 2, 14, 42, 55, 416, DateTimeKind.Local).AddTicks(9221), new DateTime(2023, 2, 2, 14, 42, 55, 416, DateTimeKind.Local).AddTicks(9227), "System" },
+                    { 2, "Sim Lim Square, #02-21 Rochor Canal Rd, 188504", "Xtreme@gmail.com", "Xtreme Solution Pte Ltd", 63389566, "System", new DateTime(2023, 2, 2, 14, 42, 55, 416, DateTimeKind.Local).AddTicks(9994), new DateTime(2023, 2, 2, 14, 42, 55, 416, DateTimeKind.Local).AddTicks(9998), "System" }
                 });
 
             migrationBuilder.InsertData(
@@ -336,8 +336,8 @@ namespace Eventers.Server.Migrations
                 columns: new[] { "Id", "Address", "ContactNumber", "CreatedBy", "DateCreated", "DateOfBirth", "DateUpdated", "Email", "Gender", "NRIC", "Name", "UpdatedBy" },
                 values: new object[,]
                 {
-                    { 1, "Jurong East", 86118499, "System", new DateTime(2023, 1, 31, 14, 51, 18, 434, DateTimeKind.Local).AddTicks(9721), 2002, new DateTime(2023, 1, 31, 14, 51, 18, 435, DateTimeKind.Local).AddTicks(8675), "njx2002@gmail.com", "Male", 53, "Benson", "System" },
-                    { 2, "Jurong West", 96731728, "System", new DateTime(2023, 1, 31, 14, 51, 18, 436, DateTimeKind.Local).AddTicks(502), 1865, new DateTime(2023, 1, 31, 14, 51, 18, 436, DateTimeKind.Local).AddTicks(510), "jeffng@gmail.com", "Female", 193, "Jeff", "System" }
+                    { 1, "Jurong East", 86118499, "System", new DateTime(2023, 2, 2, 14, 42, 55, 414, DateTimeKind.Local).AddTicks(9628), 2002, new DateTime(2023, 2, 2, 14, 42, 55, 415, DateTimeKind.Local).AddTicks(8058), "njx2002@gmail.com", "Male", "T4758394K", "Benson", "System" },
+                    { 2, "Jurong West", 96731728, "System", new DateTime(2023, 2, 2, 14, 42, 55, 415, DateTimeKind.Local).AddTicks(9805), 1865, new DateTime(2023, 2, 2, 14, 42, 55, 415, DateTimeKind.Local).AddTicks(9809), "jeffng@gmail.com", "Female", "T26485694H", "Jeff", "System" }
                 });
 
             migrationBuilder.InsertData(
@@ -345,8 +345,8 @@ namespace Eventers.Server.Migrations
                 columns: new[] { "Id", "CreatedBy", "DateCreated", "DateUpdated", "StaffEmail", "StaffName", "StaffNumber", "UpdatedBy" },
                 values: new object[,]
                 {
-                    { 1, "System", new DateTime(2023, 1, 31, 14, 51, 18, 437, DateTimeKind.Local).AddTicks(3906), new DateTime(2023, 1, 31, 14, 51, 18, 437, DateTimeKind.Local).AddTicks(3913), "Alaster@gmail.com", "Alaster", 86843757, "System" },
-                    { 2, "System", new DateTime(2023, 1, 31, 14, 51, 18, 437, DateTimeKind.Local).AddTicks(4560), new DateTime(2023, 1, 31, 14, 51, 18, 437, DateTimeKind.Local).AddTicks(4564), "AnselSoh@gmail.com", "Ansel Soh", 93768486, "System" }
+                    { 1, "System", new DateTime(2023, 2, 2, 14, 42, 55, 417, DateTimeKind.Local).AddTicks(2365), new DateTime(2023, 2, 2, 14, 42, 55, 417, DateTimeKind.Local).AddTicks(2371), "Alaster@gmail.com", "Alaster", 86843757, "System" },
+                    { 2, "System", new DateTime(2023, 2, 2, 14, 42, 55, 417, DateTimeKind.Local).AddTicks(2931), new DateTime(2023, 2, 2, 14, 42, 55, 417, DateTimeKind.Local).AddTicks(2935), "AnselSoh@gmail.com", "Ansel Soh", 93768486, "System" }
                 });
 
             migrationBuilder.CreateIndex(

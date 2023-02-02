@@ -22,12 +22,26 @@
             <InputText @bind-Value="Eventee.Address" class="form-control" />
             <ValidationMessage For="@(() => Eventee.Address)" />
         </div>
+        <div class="form-group">
+            <label>Eventee Year Of Birth: </label>
+            <div>
+                <InputNumber @bind-Value="Eventee.DateOfBirth" class="form-control" />
+                <ValidationMessage For="@(() => Eventee.Address)" />
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <label>Eventee Address: </label>
+        <div>
+            <InputNumber @bind-Value="Eventee.DateOfBirth" class="form-control" />
+            <ValidationMessage For="@(() => Eventee.Address)" />
+        </div>
     </div>
 
     <div class="form-group">
         <label>Eventee NRIC: </label>
         <div>
-            <InputNumber @bind-Value="Eventee.NRIC" class="form-control" />
+            <InputText @bind-Value="Eventee.NRIC" class="form-control" />
             <ValidationMessage For="@(() => Eventee.NRIC)" />
         </div>
     </div>

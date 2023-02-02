@@ -134,8 +134,8 @@ namespace Eventers.Server.Migrations
                             CompanyName = "Razer",
                             CompanyNumber = 65052188,
                             CreatedBy = "System",
-                            DateCreated = new DateTime(2023, 1, 31, 14, 51, 18, 437, DateTimeKind.Local).AddTicks(732),
-                            DateUpdated = new DateTime(2023, 1, 31, 14, 51, 18, 437, DateTimeKind.Local).AddTicks(741),
+                            DateCreated = new DateTime(2023, 2, 2, 14, 42, 55, 416, DateTimeKind.Local).AddTicks(9221),
+                            DateUpdated = new DateTime(2023, 2, 2, 14, 42, 55, 416, DateTimeKind.Local).AddTicks(9227),
                             UpdatedBy = "System"
                         },
                         new
@@ -146,8 +146,8 @@ namespace Eventers.Server.Migrations
                             CompanyName = "Xtreme Solution Pte Ltd",
                             CompanyNumber = 63389566,
                             CreatedBy = "System",
-                            DateCreated = new DateTime(2023, 1, 31, 14, 51, 18, 437, DateTimeKind.Local).AddTicks(1541),
-                            DateUpdated = new DateTime(2023, 1, 31, 14, 51, 18, 437, DateTimeKind.Local).AddTicks(1546),
+                            DateCreated = new DateTime(2023, 2, 2, 14, 42, 55, 416, DateTimeKind.Local).AddTicks(9994),
+                            DateUpdated = new DateTime(2023, 2, 2, 14, 42, 55, 416, DateTimeKind.Local).AddTicks(9998),
                             UpdatedBy = "System"
                         });
                 });
@@ -175,7 +175,9 @@ namespace Eventers.Server.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Location")
-                        .HasColumnType("nvarchar(max)");
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
 
                     b.Property<int>("StaffId")
                         .HasColumnType("int");
@@ -184,7 +186,9 @@ namespace Eventers.Server.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("Title")
-                        .HasColumnType("nvarchar(max)");
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
 
                     b.Property<string>("UpdatedBy")
                         .HasColumnType("nvarchar(max)");
@@ -206,7 +210,9 @@ namespace Eventers.Server.Migrations
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("Address")
-                        .HasColumnType("nvarchar(max)");
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
 
                     b.Property<int>("ContactNumber")
                         .HasColumnType("int");
@@ -224,16 +230,22 @@ namespace Eventers.Server.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Email")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Gender")
-                        .HasColumnType("nvarchar(max)");
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
 
-                    b.Property<int>("NRIC")
-                        .HasColumnType("int");
+                    b.Property<string>("NRIC")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
 
                     b.Property<string>("UpdatedBy")
                         .HasColumnType("nvarchar(max)");
@@ -249,12 +261,12 @@ namespace Eventers.Server.Migrations
                             Address = "Jurong East",
                             ContactNumber = 86118499,
                             CreatedBy = "System",
-                            DateCreated = new DateTime(2023, 1, 31, 14, 51, 18, 434, DateTimeKind.Local).AddTicks(9721),
+                            DateCreated = new DateTime(2023, 2, 2, 14, 42, 55, 414, DateTimeKind.Local).AddTicks(9628),
                             DateOfBirth = 2002,
-                            DateUpdated = new DateTime(2023, 1, 31, 14, 51, 18, 435, DateTimeKind.Local).AddTicks(8675),
+                            DateUpdated = new DateTime(2023, 2, 2, 14, 42, 55, 415, DateTimeKind.Local).AddTicks(8058),
                             Email = "njx2002@gmail.com",
                             Gender = "Male",
-                            NRIC = 53,
+                            NRIC = "T4758394K",
                             Name = "Benson",
                             UpdatedBy = "System"
                         },
@@ -264,12 +276,12 @@ namespace Eventers.Server.Migrations
                             Address = "Jurong West",
                             ContactNumber = 96731728,
                             CreatedBy = "System",
-                            DateCreated = new DateTime(2023, 1, 31, 14, 51, 18, 436, DateTimeKind.Local).AddTicks(502),
+                            DateCreated = new DateTime(2023, 2, 2, 14, 42, 55, 415, DateTimeKind.Local).AddTicks(9805),
                             DateOfBirth = 1865,
-                            DateUpdated = new DateTime(2023, 1, 31, 14, 51, 18, 436, DateTimeKind.Local).AddTicks(510),
+                            DateUpdated = new DateTime(2023, 2, 2, 14, 42, 55, 415, DateTimeKind.Local).AddTicks(9809),
                             Email = "jeffng@gmail.com",
                             Gender = "Female",
-                            NRIC = 193,
+                            NRIC = "T26485694H",
                             Name = "Jeff",
                             UpdatedBy = "System"
                         });
@@ -282,11 +294,15 @@ namespace Eventers.Server.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int>("CVC")
-                        .HasColumnType("int");
+                    b.Property<string>("CVC")
+                        .IsRequired()
+                        .HasMaxLength(3)
+                        .HasColumnType("nvarchar(3)");
 
-                    b.Property<int>("CardNumber")
-                        .HasColumnType("int");
+                    b.Property<string>("CardNumber")
+                        .IsRequired()
+                        .HasMaxLength(16)
+                        .HasColumnType("nvarchar(16)");
 
                     b.Property<string>("CreatedBy")
                         .HasColumnType("nvarchar(max)");
@@ -304,7 +320,9 @@ namespace Eventers.Server.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("PaymentMethod")
-                        .HasColumnType("nvarchar(max)");
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
 
                     b.Property<string>("UpdatedBy")
                         .HasColumnType("nvarchar(max)");
@@ -355,8 +373,8 @@ namespace Eventers.Server.Migrations
                         {
                             Id = 1,
                             CreatedBy = "System",
-                            DateCreated = new DateTime(2023, 1, 31, 14, 51, 18, 437, DateTimeKind.Local).AddTicks(3906),
-                            DateUpdated = new DateTime(2023, 1, 31, 14, 51, 18, 437, DateTimeKind.Local).AddTicks(3913),
+                            DateCreated = new DateTime(2023, 2, 2, 14, 42, 55, 417, DateTimeKind.Local).AddTicks(2365),
+                            DateUpdated = new DateTime(2023, 2, 2, 14, 42, 55, 417, DateTimeKind.Local).AddTicks(2371),
                             StaffEmail = "Alaster@gmail.com",
                             StaffName = "Alaster",
                             StaffNumber = 86843757,
@@ -366,8 +384,8 @@ namespace Eventers.Server.Migrations
                         {
                             Id = 2,
                             CreatedBy = "System",
-                            DateCreated = new DateTime(2023, 1, 31, 14, 51, 18, 437, DateTimeKind.Local).AddTicks(4560),
-                            DateUpdated = new DateTime(2023, 1, 31, 14, 51, 18, 437, DateTimeKind.Local).AddTicks(4564),
+                            DateCreated = new DateTime(2023, 2, 2, 14, 42, 55, 417, DateTimeKind.Local).AddTicks(2931),
+                            DateUpdated = new DateTime(2023, 2, 2, 14, 42, 55, 417, DateTimeKind.Local).AddTicks(2935),
                             StaffEmail = "AnselSoh@gmail.com",
                             StaffName = "Ansel Soh",
                             StaffNumber = 93768486,
