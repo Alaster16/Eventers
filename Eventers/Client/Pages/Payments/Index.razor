@@ -2,6 +2,7 @@
 @inject HttpClient _client
 @inject IJSRuntime js
 @attribute [Authorize]
+@inject HttpInterceptorService _interceptor
 @implements IDisposable
 
 <h3 class="card-title">Join an event!</h3>
@@ -19,7 +20,7 @@
 else
 {
     <table class="table table-responsive" id="paymentsTable">
-        >
+        
         <thead>
             <tr>
                 <th>Event</th>
@@ -67,8 +68,8 @@ else
 
     protected async override Task OnInitializedAsync()
     {
+        _interceptor.MonitorEvent();
         Payments = await _client.GetFromJsonAsync<List<Payment>>($"{Endpoints.PaymentsEndpoint}");
-
     }
 
     async Task Delete(int PaymentId)
@@ -89,6 +90,7 @@ else
 
     public void Dispose()
     {
+        _interceptor.DisposeEvent();
         js.InvokeVoidAsync("DataTablesDispose", "#paymentsTable");
     }
 
@@ -96,5 +98,4 @@ else
 
 
 
-}
 

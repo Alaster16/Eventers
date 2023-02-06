@@ -68,9 +68,12 @@
         </div>
     </div>
 
-    <button type="submit" class="btn btn-success btn-block">
-        Confirm Edit
-    </button>
+    @if (!Disabled)
+    {
+        <button type="submit" class="btn btn-success btn-block">
+            @ButtonText
+        </button>
+    }
     <BackToList Target="Eventees" />
 
 </EditForm>
